@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+@import "bourbon";
+
+.app{ max-width: 640px;margin: 0 auto; background-color: #f3f3f3;height: 100%;}
+
+.head{
+  padding: 5px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #a4a4a4;
+
+  h2{text-align: center;height: 42px;line-height: 42px;font-family: Roboto;  font-size: 30px;}
+
+  .setting,.add-device{position: relative;width: 50%;float:left;display: inline-block;color: #333333;font-family: "Hiragino Sans GB"; font-weight: normal;font-size: 22px;}
+  .setting{text-align: left;padding-left:37px;}
+  .add-device{text-align: right; padding-right: 37px;}
+
+  .setting::before,.add-device::before{
+      content: '';
+      width: 35px;
+      height: 40px;
+      position: absolute;
+      bottom: 0;
+
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: left center;
+  }
+  .setting::before{
+    left:5px;
+    background-image: url(/res/img/setting.png);
+  }
+  .add-device::before{
+    right:0px;
+    background-image: url(/res/img/add.png);
+  }
+
+  @include clearfix;
+}
+
+.logo_bg{
+  padding: 12% 0;
+
+  .logo{display: block;text-align: center;}
+}
+
+.form{
+  background-color: #fff;
+
+  label{
+    display: block;
+    position: relative;
+  }
+  label::before{
+    content: '';
+    width: 35px;
+    height: 45px;
+    position: absolute;
+    bottom: 0;
+    left:20px;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: left center;
+
+  }
+  label[for="email"]::before {
+    background-image: url(/res/img/email.png);
+  }
+  label[for="pwd"]::before,label[for="confirm_pwd"]::before  {
+    background-image: url(/res/img/pwd.png);
+  }
+  label[for="mobile"]::before {
+    background-image: url(/res/img/mobile.png);
+  }
+  label[for="country"]::before {
+    background-image: url(/res/img/country.png);
+  }
+  label[for="imei"]::before {
+    background-image: url(/res/img/imei.png);
+  }
+
+  input{
+    display: block;
+    width:100%;
+    height: 45px;
+    line-height: 35px;
+    box-sizing:border-box;
+    border:none;
+    padding:0 0 0 12%;
+    background: transparent;
+    font-size: 18px;
+    font-family: "Hiragino Sans GB";
+    border-bottom:1px solid #e3e3e3;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
+
+
+.sign_btn{
+  text-align: center;
+  padding: 10% 0;
+
+  .ant-btn{width:60%; margin-bottom: 10px;font-weight: bold;}
+  .ant-btn-primary{background-color: #34cf95;}
+
+  .reg_btn{
+    margin-top: 10px;
+    .ant-btn-primary{background-color: initial;border-color: #34cf95;color: #727272;}
+  }
+  .ant-checkbox-checked .ant-checkbox-inner{
+    background-color: #34cf95;
+  }
+}
+
+.main{
+  .thead{background-color: #fff;margin-bottom: 10px;}
+  .device-list{background-color: #fff;}
+  .row-flex-middle>div{
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+  }
+}
+
+.tail{text-align: center;padding-bottom: 10px;}

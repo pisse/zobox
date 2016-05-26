@@ -1,0 +1,113 @@
+{
+    "status": 1,
+    "data": {
+        "foreground": [
+            {                                       
+                "privilege_id": "1",
+                "privilege_key": "f_menu_core_data",
+                "privilege_name": "核心数据",
+                "parent_id": "0",
+                "order_sort": "1",
+                "type": "1",
+                "create_time": "2016-05-04 15:37:32",
+                "is_selected": 1,
+                "childData": [{
+                        "privilege_id": "2",
+                        "privilege_key": "f_client_pc",
+                        "privilege_name": "终端-PC",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:37:49",
+                        "is_selected": 1
+                    },{
+                        "privilege_id": "3",
+                        "privilege_key": "f_client_app",
+                        "privilege_name": "终端-APP",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:02",
+                        "is_selected": 0
+                    },{
+                        "privilege_id": "4",
+                        "privilege_key": "f_client_m",
+                        "privilege_name": "终端-M",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:15",
+                        "is_selected": 0
+                    },{
+                        "privilege_id": "5",
+                        "privilege_key": "f_client_wxsq",
+                        "privilege_name": "终端-微信手Q",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:27",
+                        "is_selected": 0
+                    }]
+                }, {                                       
+                "privilege_id": "6",
+                "privilege_key": "f_menu_core_data",
+                "privilege_name": "业务日报",
+                "parent_id": "0",
+                "order_sort": "1",
+                "type": "1",
+                "create_time": "2016-05-04 15:37:32",
+                "is_selected": 1,
+                "childData": [{
+                        "privilege_id": "7",
+                        "privilege_key": "f_client_pc",
+                        "privilege_name": "xxxx-日报",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:37:49",
+                        "is_selected": 1
+                    },{
+                        "privilege_id": "8",
+                        "privilege_key": "f_client_app",
+                        "privilege_name": "xxxxxxx-日报",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:02",
+                        "is_selected": 1
+                    },{
+                        "privilege_id": "9",
+                        "privilege_key": "f_client_m",
+                        "privilege_name": "xxxxx-日报",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:15",
+                        "is_selected": 0
+                    },{
+                        "privilege_id": "10",
+                        "privilege_key": "f_client_wxsq",
+                        "privilege_name": "xxxxxxxxxxx-日报",
+                        "parent_id": "1",
+                        "order_sort": "1",
+                        "type": "1",
+                        "create_time": "2016-05-04 15:38:27",
+                        "is_selected": 0
+                    }]
+                }
+         ],
+        "background": [
+            {
+                "privilege_id": "6",
+                "privilege_key": "b_menu_user_privilege",
+                "privilege_name": "用户权限",
+                "parent_id": "0",
+                "order_sort": "1",
+                "type": "2",
+                "create_time": "2016-05-04 17:21:40",
+                "is_selected": 1
+            }
+        ]
+    },
+    "res_msg": "查询成功"
+}
