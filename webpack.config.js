@@ -1,4 +1,5 @@
 var _path = require('path');
+var _fs = require('fs');
 var _rucksackCss = require("rucksack-css");
 var _autoprefixer = require("autoprefixer");
 var _extractTextWebpackPlugin = require('extract-text-webpack-plugin');
@@ -34,6 +35,16 @@ var assetsPluginInstance = new AssetsPlugin({
     //path: _path.join(__dirname, 'app', 'views')
 });
 
+var getEntry = function(){
+    var entry_idr = _path.resolve(__dirname, "src/entry/");
+    var ret = {};
+    _fs.readdirSync(entry_idr).forEach(function(item,i){
+        var name = _path.basename(item, '.jsx');
+        ret[name] = './src/entry/' +  item;
+    });
+    return ret;
+}
+
 module.exports = {//function(webpackConfig) {
     /* webpackConfig.babel.plugins.push('antd');
 
@@ -64,7 +75,7 @@ module.exports = {//function(webpackConfig) {
         modulesDirectories: ['node_modules', (0, _path.join)(__dirname, '../node_modules')]
     },
 
-    entry: pkg.entry,
+    entry: getEntry(),//pkg.entry,//getEntry(),
 
     node: node,
 
@@ -83,7 +94,6 @@ module.exports = {//function(webpackConfig) {
                 return (/\.css$/.test(filePath) && !/\.module\.css$/.test(filePath)
                 );
             },
-
             loader: _extractTextWebpackPlugin.extract('css?sourceMap&-restructuring!' + 'postcss')
         }, {
             test: /\.module\.css$/,
@@ -93,7 +103,6 @@ module.exports = {//function(webpackConfig) {
                 return (/\.less$/.test(filePath) && !/\.module\.less$/.test(filePath)
                 );
             },
-
             loader: _extractTextWebpackPlugin.extract('css?sourceMap!' + 'postcss!' + ('less-loader?{"sourceMap":true,"modifyVars":' + JSON.stringify(pkg.theme || {}) + '}'))
         }, {
             test: /\.module\.less$/,
@@ -103,7 +112,6 @@ module.exports = {//function(webpackConfig) {
                 return (/\.scss/.test(filePath) && !/\.module\.scss/.test(filePath)
                 );
             },
-
             loader: _extractTextWebpackPlugin.extract('css?sourceMap!' + 'postcss!sass-loader')
         }, {
             test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,

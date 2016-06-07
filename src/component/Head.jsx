@@ -1,34 +1,46 @@
 'use strict';
 
 import React, { Component } from 'react';
-//import $ from "../bower_components/jquery/dist/jquery";
+import classNames from 'classnames';
 
 import './base.scss';
 
 
 class Head extends Component {
-	displayName =  'Head';
+
+	static defaultProps = {
+		prefixCls: 'head',
+		title:""
+	}
 
 	constructor() {
 		super();
-
-		this.state = {
-			title: ""
-		}
 	}
 
-	componentWillMount(){
-		var title = this.props.title;
-
-		this.setState({
-			title: title
-		});
+	handleClick(){
+		window.history.go(-1);
 	}
 
 	render(){
+
+		const props = this.props;
+		const { className,prefixCls,bcls, ...others } = props;
+		const classes = classNames({
+			[prefixCls]: true,
+			[className]: className,
+		});
+
+		const bclass =  classNames({
+			"none": bcls,
+			header_goback: true,
+		});
+
 		return (
-			<header className="head">
-				<h2>{this.state.title}</h2>
+			<header className={classes}>
+				<div className={bclass} onClick={this.handleClick.bind(this)}>
+					<span></span>
+				</div>
+				<h2>{this.props.title}</h2>
 			</header>
 		)
 	}

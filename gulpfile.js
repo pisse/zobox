@@ -7,7 +7,8 @@ var webpackConfig = require("./webpack.config.js");
 var gulpLoadPlugins = require('gulp-load-plugins');
 var $ = gulpLoadPlugins({
     rename: {
-        'gulp-rev-collector': 'revCollector'
+        'gulp-rev-collector': 'revCollector',
+        'gulp-run-sequence' : 'runSequence'
     }
 });
 
@@ -40,13 +41,27 @@ gulp.task("rev", ['webpack:build'],  function () {
 });
 
 // Production build
-gulp.task("build", ["rev"], function () {
-    return gulp.src([ Assets_dist + "dist/" +'*.json',
-            'src/*.html'])
-        .pipe($.revCollector({
+gulp.task("build", function () {
+    $.runSequence("webpack:build", "build-assets", function(){
+         return gulp.src([ Assets_dist + "dist/" +'*.json',
+         'src/*.html'])
+       /*  .pipe($.revCollector({
             replaceReved: true
-        }))
-        .pipe(gulp.dest( Html_dist ));
+         }))*/
+         .pipe(gulp.dest( Html_dist ));
+    });
+});
+
+gulp.task("build-assets", ["build-css", "build-js"]);
+gulp.task("build-css", function () {
+     return gulp.src([ Assets_dist +'*.css'])
+        .pipe($.replace("\/res\/img\/","\.\.\/res\/img\/"))
+        .pipe(gulp.dest( Assets_dist ));
+});
+gulp.task("build-js", function () {
+    return gulp.src([ Assets_dist +'*.js'])
+        .pipe($.replace("\/res\/img\/","\.\/res\/img\/"))
+        .pipe(gulp.dest( Assets_dist ));
 });
 
 gulp.task("webpack:build", function (callback) {

@@ -13,8 +13,8 @@ class App extends Component {
         super();
     }
 
-    onChange(){
-        console.log(1);
+    handleClick(){
+        window.location.href = "./main.html";
     }
 
     render(){
@@ -51,7 +51,7 @@ class App extends Component {
                 </form>
 
                 <div className="sign_btn">
-                        <Button type="primary">Register</Button>
+                        <Button type="primary" onClick={this.handleClick.bind(this)}>Register</Button>
                 </div>
 
             </div>
