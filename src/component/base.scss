@@ -94,6 +94,9 @@ body{background-color: #f3f3f3;}
     line-height: $height45;;
     vertical-align: middle;
     border-bottom: 1px solid #e3e3e3;
+    &:nth-child(1){
+      border-top: 1px solid #e3e3e3;
+    }
   }
   label::before{
     content: '';
@@ -116,11 +119,48 @@ body{background-color: #f3f3f3;}
   label[for="mobile"]::before {
     background-image: url(/res/img/mobile.png);
   }
-  label[for="country"]::before {
-    background-image: url(/res/img/country.png);
+  label[for="country"]{
+    padding-left: 50px;
+    &::before{
+      background-image: url(/res/img/country.png);
+    }
   }
   label[for="imei"]::before {
     background-image: url(/res/img/imei.png);
+  }
+  label[for="vcode"]::before {
+    background-image: url(/res/img/pwd.png);
+  }
+  .vcode-btn{
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    font-style: normal;
+    border-left: 1px solid #e3e3e3;
+    padding: 0 15px 0 5px;
+
+    background-color: #eee;
+    color: #848689;
+
+    &.active{
+      background-color: #34cf95;
+      color: #fff;
+    }
+  }
+
+  .ant-cascader-picker-label{
+    left:0;
+    font-family: "Hiragino Sans GB";
+    font-size: 18px;
+  }
+  .coutry-wrap{
+    & .ant-input{
+      padding-left: 0;
+      &:focus, &:hover{
+        border: 0;
+        box-shadow: none;
+      }
+    }
   }
 
   input{
@@ -144,14 +184,22 @@ body{background-color: #f3f3f3;}
   }
 }
 
-
-
 .sign_btn{
   text-align: center;
   padding: 6% 0 5% 0;
 
   .ant-btn{width:60%; margin-bottom: 10px;font-weight: bold;}
-  .ant-btn-primary{background-color: #34cf95;}
+  .ant-btn-primary{
+    background-color: #eee;
+    border-color: #eee;
+    color: #848689;
+
+    &.active{
+      background-color: #34cf95;
+      border-color: #34cf95;
+      color: #fff;
+    }
+  }
 
   .login_info{
     position: absolute;

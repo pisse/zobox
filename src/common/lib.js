@@ -1,9 +1,40 @@
 import 'antd/dist/antd.less';
 
 import $ from "../bower_components/jquery/dist/jquery"
-
+import Config from './config';
+import Data from './mockData';
 
 var util = {
+
+    request: function(opt){
+
+        if(Config.isDev){
+
+            if ( opt.success ) {
+                opt.success(Data[opt.url]);
+            }
+
+        } else {
+
+            $.getJSON({
+                type: opt.type ? opt.type : 'post',
+                url: Config.devUrl + opt.url,
+                data: opt.data,
+                dataType: 'json',
+                success: function(rdata) {
+                    if ( rdata.retcode === 0 ) {
+                        if ( opt.success ) {
+                            opt.success(rdata);
+                        }
+                    }
+                    else {}
+                },
+                error: function(rdata) {}
+            });
+
+        }
+    },
+
     getCookie: function (name) {
         var reg = new RegExp("(^| )" + name + "(?:=([^;]*))?(;|$)"),
             val = document.cookie.match(reg);
