@@ -1,9 +1,11 @@
 
+var isDev = false;
+
 var config = {
 
     isDev: false,
 
-    devUrl: "http://localhost:8080/cgi-bin/",
+    devUrl: !isDev ? "http://112.124.66.29:8080/cgi-bin/" : "http://localhost:8080/cgi-bin/",
 
     service: {
         login: "login",
