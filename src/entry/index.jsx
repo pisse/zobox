@@ -2,7 +2,7 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Alert,Spin} from 'antd';
+import { Checkbox,Button,Alert,Spin, message} from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
@@ -46,6 +46,7 @@ class App extends Base {
             util.request({
                 url: Services.login,
                 type: "get",
+                dataType: "json",
                 data: {
                     mobile: number,
                     passwd: pwd
@@ -56,9 +57,13 @@ class App extends Base {
 
                     setTimeout(function(){
                         that.closeLoading();
-                        window.location.href = "./main.html";
+                        //window.location.href = "./main.html";
                     }, 3000);
 
+                },
+                error: function(data){
+                    message.error(data.err_msg);
+                    that.closeLoading();
                 }
             });
         }

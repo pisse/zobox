@@ -40,7 +40,9 @@ var getEntry = function(){
     var ret = {};
     _fs.readdirSync(entry_idr).forEach(function(item,i){
         var name = _path.basename(item, '.jsx');
-        ret[name] = './src/entry/' +  item;
+        if(name[0] != "_"){
+            ret[name] = './src/entry/' +  item;
+        }
     });
     return ret;
 }

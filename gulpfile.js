@@ -123,18 +123,11 @@ gulp.task("webpack-dev-server", function (callback) {
             colors: true
         },
         proxy: {
-            '/json.php*': {
-                target: 'http://mba.m.jd.com',
+            '/cgi-bin/*': {
+                target: 'http://112.124.66.29:8080',
                 changeOrigin: true
             },
-            '/mba.php*': {
-                target: 'http://mba.m.jd.com',
-                changeOrigin: true
-            },
-            '/admin.php*': {
-                target: 'http://mba.m.jd.com',
-                changeOrigin: true
-            }
+
         }
     }).listen(8080, "localhost", function (err) {
         if (err) throw new gutil.PluginError("webpack-dev-server", err);

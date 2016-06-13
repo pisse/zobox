@@ -20,14 +20,18 @@ var util = {
                 type: opt.type ? opt.type : 'post',
                 url: Config.devUrl + opt.url,
                 data: opt.data,
-                dataType: 'json',
+                dataType: opt.dataType ? opt.dataType : 'json',
                 success: function(rdata) {
                     if ( rdata.retcode === 0 ) {
                         if ( opt.success ) {
                             opt.success(rdata);
                         }
                     }
-                    else {}
+                    else {
+                        if ( opt.error ) {
+                            opt.error(rdata);
+                        }
+                    }
                 },
                 error: function(rdata) {}
             });
