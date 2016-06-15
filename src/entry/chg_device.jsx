@@ -121,7 +121,7 @@ class App extends Base {
 
                         that.closeLoading();
 
-                        //window.history.go(-1);
+                        window.history.go(-1);
                 },
                 error: function(data){
 

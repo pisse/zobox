@@ -13,7 +13,7 @@ var util = {
             if ( opt.success ) {
                 setTimeout(function(){
                     opt.success(Data[opt.url]);
-                }, 2000);
+                }, 500);
             }
 
         } else {
