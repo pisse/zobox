@@ -25,6 +25,8 @@ class App extends Base {
             vcodeActive: "",
             btnActive: "",
 
+            country: "1",
+
             options: [{
                 value: '1',
                 label: 'American'
@@ -41,9 +43,13 @@ class App extends Base {
         this.mobileKeyup = this.mobileKeyup.bind(this);
         this.codeKeyup = this.codeKeyup.bind(this);
         this.getVcode = this.getVcode.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    onChange(){}
+    onChange(value){
+        this.state.country = value[0];
+    }
+
     register(){
         var that = this;
         let valid = this.codeKeyup();
@@ -54,6 +60,7 @@ class App extends Base {
             let pwd_confirm = this.refs.confirmPwd.value;
             let vcode = this.refs.vcode.value;
             let phoneNum = this.refs.mobile.value;
+            let country = this.state.country;
 
             util.request({
                 url: Services.register,
@@ -68,6 +75,9 @@ class App extends Base {
 
                     that.closeLoading();
                     window.location.href = "./index.html";
+                },
+                error: function(data){
+
                 }
             });
 
@@ -76,13 +86,16 @@ class App extends Base {
     }
 
     mobileKeyup(){
+        let ret = false;
         let number = this.refs.mobile.value;
         if( Validator.isNumeric(number) && Validator.isLength(number, {min:10,max:11})){
             this.state.vcodeActive = 'active';
+            ret = true;
         } else {
             this.state.vcodeActive = '';
         }
         this.forceUpdate();
+        return ret;
     }
 
     codeKeyup(){
@@ -117,7 +130,7 @@ class App extends Base {
 */
             this.state.vcodeActive = "";
 
-            setTimeout(function(){
+            setTimeout( function(){
                 that.mobileKeyup();
             }, 1000*60 );
 

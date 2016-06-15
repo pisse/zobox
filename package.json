@@ -9,6 +9,7 @@
     "classnames": "^2.2.5",
     "dora": "^0.3.2",
     "es3ify-loader": "^0.1.0",
+    "rc-queue-anim": "^0.11.9",
     "react": "0.14.x",
     "react-dom": "0.14.x",
     "reqwest": "2.0.5",

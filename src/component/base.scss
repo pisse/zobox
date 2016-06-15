@@ -13,7 +13,7 @@ body{background-color: #f3f3f3;}
 .app{ max-width: 640px;margin: 0 auto; }
 
 .head{
-  padding: 7px 0 2px 0;
+  padding: 10px 0 1px 0;
   background-color: #fff;
   border-bottom: 1px solid #a4a4a4;
 
@@ -40,6 +40,20 @@ body{background-color: #f3f3f3;}
   }
   .add-device::before{
     right:0px;
+    background-image: url(/res/img/add.png);
+  }
+
+  &.add i{
+    content: '';
+    width: 35px;
+    height: 36px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+
+    background-size: 68%;
+    background-repeat: no-repeat;
+    background-position: left center;
     background-image: url(/res/img/add.png);
   }
   .header_goback{

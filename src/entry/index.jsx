@@ -33,7 +33,6 @@ class App extends Base {
 
     }
 
-
     login(){
         var that = this;
         if(this.state.btnActive == "active"){
@@ -55,10 +54,8 @@ class App extends Base {
 
                     that.state.infoCls = "";
 
-                    setTimeout(function(){
-                        that.closeLoading();
-                        //window.location.href = "./main.html";
-                    }, 3000);
+                    that.closeLoading();
+                    window.location.href = "./main.html";
 
                 },
                 error: function(data){
@@ -67,7 +64,6 @@ class App extends Base {
                 }
             });
         }
-
     }
 
     keyup(){
@@ -83,7 +79,7 @@ class App extends Base {
     }
 
     register(){
-
+        window.location.href = "./register.html";
     }
 
     render(){
@@ -91,7 +87,7 @@ class App extends Base {
         let is_none = this.state.infoCls;
         let info_cls = classNames({
             wrap_info: true,
-            none: is_none,
+            none: is_none
         });
 
         let btnCls =  classNames({
@@ -129,7 +125,7 @@ class App extends Base {
                         <Checkbox defaultChecked={false} onChange={this.onChange}>Forget Password</Checkbox>
                     <br/>
                     <p className="reg_btn">
-                        <Button type="primary">Register</Button>
+                        <Button type="primary" onClick={this.register}>Register</Button>
                     </p>
 
                 </div>

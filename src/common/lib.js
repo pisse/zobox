@@ -11,7 +11,9 @@ var util = {
         if(Config.isDev){
 
             if ( opt.success ) {
-                opt.success(Data[opt.url]);
+                setTimeout(function(){
+                    opt.success(Data[opt.url]);
+                }, 2000);
             }
 
         } else {

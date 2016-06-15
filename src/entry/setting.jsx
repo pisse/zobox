@@ -1,4 +1,5 @@
-import '../common/lib';
+import util from '../common/lib';
+import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Checkbox,Button,Row } from 'antd';
@@ -7,15 +8,40 @@ import Heading from '../component/Heading';
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
 
+import Config from '../common/config';
 
-class App extends Component {
+var Services = Config.service;
+
+class App extends Base {
 
     constructor(){
         super();
+
+        this.state = {
+            loading: false
+        };
+
+        this.signOut = this.signOut.bind(this);
     }
 
-    handleClick(){
-        window.location.href = "./main.html";
+    signOut(){
+        var that = this;
+        util.request({
+            url: Services.logout,
+            type: "get",
+            data: {
+                mobile: "xx",
+                mobile: "xx"
+            },
+            success: function(data){
+
+                window.location.href = "./index.html";
+
+            },
+            error: function(data){
+                message.error(data.err_msg);
+            }
+        });
     }
 
     render(){
@@ -28,7 +54,7 @@ class App extends Component {
                 <Heading title="General" type="multiple" shape="forward" href="./about.html"></Heading>
                 <Heading className="mb5" title="About Us" type="multiple" shape="forward" href="./about.html"></Heading>
 
-                <Heading className="none" title="Sign Out" type="single" shape="forward" icon="right" ></Heading>
+                <Heading className="none" title="Sign Out" type="single" shape="forward" icon="right" click={this.signOut} ></Heading>
             </div>
         )
     }

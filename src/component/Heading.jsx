@@ -27,6 +27,10 @@ export default class Heading extends Component {
 		if(this.props.href){
 			window.location.href = this.props.href;
 		}
+
+		if(this.props.click){
+			this.props.click.call(this);
+		}
 	}
 
 	render(){

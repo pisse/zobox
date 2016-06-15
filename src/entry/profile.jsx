@@ -22,19 +22,18 @@ class App extends Component {
 
         return (
             <div className="profile">
-                <Head title=""></Head>
+                <Head title="Profile"></Head>
 
 
-                <Heading title="First Name"  className="mt5" type="multiple" shape="forward" icon="right" ></Heading>
-                <Heading title="Last Name" type="multiple" shape="forward" ></Heading>
-                <Heading title="Email" type="multiple" shape="forward" ></Heading>
-                <Heading title="Country" type="multiple" shape="forward" ></Heading>
-                <Heading title="Mobile" type="multiple" shape="forward" ></Heading>
+                <Heading title="First Name"  className="mt5" type="multiple" shape="forward" icon="right" href="./chg_profile.html?p_t=1" ></Heading>
+                <Heading title="Last Name" type="multiple" shape="forward" href="./chg_profile.html?p_t=2"></Heading>
+                <Heading title="Country" type="multiple" shape="forward" href="./chg_profile.html?p_t=0"></Heading>
+                <Heading title="Mobile" type="multiple" shape="forward" href="./chg_profile.html?p_t=3"></Heading>
 
-                <Heading title="Street" className="mt5" type="multiple" shape="forward" ></Heading>
-                <Heading title="City" type="multiple" shape="forward" ></Heading>
-                <Heading title="Post Code" type="multiple" shape="forward" ></Heading>
-                <Heading title="State" className="mb5" type="multiple" shape="forward" ></Heading>
+                <Heading title="State" className="mt5" type="multiple" shape="forward" href="./chg_profile.html?p_t=4"></Heading>
+                <Heading title="City" type="multiple" shape="forward" href="./chg_profile.html?p_t=5"></Heading>
+                <Heading title="Street" className="" type="multiple" shape="forward" href="./chg_profile.html?p_t=6"></Heading>
+                <Heading title="Post Code" type="multiple" shape="forward" href="./chg_profile.html?p_t=7"></Heading>
 
 
                 <Heading className="mt5" title="Change Password" type="multiple" shape="forward"  href="./chg_pwd.html"></Heading>

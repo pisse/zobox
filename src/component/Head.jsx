@@ -24,7 +24,7 @@ class Head extends Component {
 	render(){
 
 		const props = this.props;
-		const { className,prefixCls,bcls, ...others } = props;
+		const { className,prefixCls,bcls,onAdd, ...others } = props;
 		const classes = classNames({
 			[prefixCls]: true,
 			[className]: className,
@@ -35,12 +35,20 @@ class Head extends Component {
 			header_goback: true,
 		});
 
+		var addIcon;
+		if(onAdd){
+			addIcon = <i className="add" onClick={onAdd}></i>;
+		}
+
 		return (
 			<header className={classes}>
 				<div className={bclass} onClick={this.handleClick.bind(this)}>
 					<span></span>
 				</div>
-				<h2>{this.props.title}</h2>
+				<h2>
+					{this.props.title}
+				</h2>
+				{addIcon}
 			</header>
 		)
 	}
