@@ -77,7 +77,9 @@ class App extends Component {
         map.addControl(new BMap.ScaleControl({}));
         map.addControl(new BMap.OverviewMapControl());
         map.addControl(new BMap.MapTypeControl());
-        map.addControl(new BMap.GeolocationControl())
+        map.addControl(new BMap.GeolocationControl());
+
+        $("#time_range").show();
     }
 
     render(){

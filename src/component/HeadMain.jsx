@@ -22,8 +22,8 @@ class HeadMain extends Component {
 		return (
 			<header className="head">
 				<h2>
-					<a className="setting" href="./setting.html">Setup</a>
-					<a className="add-device" href="./add_user.html">Add</a>
+					<a className="setting" href="./setting.html"><span>Setup</span></a>
+					<a className="add-device" href="./add_user.html"><span>Add</span></a>
 				</h2>
 			</header>
 		)

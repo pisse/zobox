@@ -21,6 +21,7 @@ class SInput extends Component {
 		};
 
 		this.handleKeyUp = this.handleKeyUp.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleKeyUp(){
@@ -38,6 +39,10 @@ class SInput extends Component {
 		}
 		this.forceUpdate();
 	}
+	handleClick(e){
+		e.stopPropagation();
+	}
+
 
 	render(){
 
@@ -63,7 +68,7 @@ class SInput extends Component {
 		return (
 			<div className={classes}>
 				<input placeholder={placeholder}
-								  onKeyUp={this.handleKeyUp} ref="input" />
+								  onKeyUp={this.handleKeyUp} ref="input" onClick={this.handleClick} />
 				<a href="javascript:;" className={sclasses}></a>
 				<a href="javascript:;" className={cclasses}></a>
 			</div>
