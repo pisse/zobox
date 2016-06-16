@@ -80,8 +80,6 @@ class App extends Base {
 
                 }
             });
-
-
         }
     }
 
@@ -127,7 +125,7 @@ class App extends Base {
                 },
                 success: function(data){}
             });
-*/
+            */
             this.state.vcodeActive = "";
 
             setTimeout( function(){

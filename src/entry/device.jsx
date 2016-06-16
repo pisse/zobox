@@ -85,7 +85,7 @@ class App extends Base {
                 <Heading title="SIM IMEI" type="multiple" shape="forward" icon="right" href="./chg_device.html?d_t=3"></Heading>
                 <Heading title="SIM Phone#" type="multiple" className="mb5" shape="forward" icon="right" href="./chg_device.html?d_t=2"></Heading>
 
-                <Heading title="Device Name" type="single" shape="forward" icon="right" href="./chg_device.html?d_t=1"></Heading>
+                <Heading title="Device Name" className="mb5" type="single" shape="forward" icon="right" href="./chg_device.html?d_t=1"></Heading>
 
             </div>
         )

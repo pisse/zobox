@@ -13,7 +13,7 @@ body{background-color: #f3f3f3;}
 .app{ max-width: 640px;margin: 0 auto; }
 
 .head{
-  padding: 10px 0 1px 0;
+  padding: 15px 0 1px 0;
   background-color: #fff;
   border-bottom: 1px solid #a4a4a4;
 
@@ -250,6 +250,12 @@ body{background-color: #f3f3f3;}
   background-color: #6fd865;
   border-color: #6fd865;
 }
+.ant-modal-footer{
+  .button{
+    background-color: #34cf95;
+    border-color: #34cf95;
+  }
+}
 .ant-message-notice{text-align:center;}
 .ant-message-notice-content{background:rgba(0,0,0,.5);color:#fff; font-size:13px;}
 .main{
@@ -272,12 +278,12 @@ body{background-color: #f3f3f3;}
   height: $height40;
   line-height: $height40;
   background-color: #fff;
-  padding:  0px 25px;
+  padding: 0px 25px 0px 12px;
   font-size: 16px;
 
   .ant-switch{
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 9px;
   }
 }
@@ -293,7 +299,7 @@ body{background-color: #f3f3f3;}
   height: $height40;
   position: absolute;
   bottom: 0;
-  right:20px;
+  right:2px;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: left center;
@@ -472,7 +478,8 @@ body{background-color: #f3f3f3;}
   .ant-modal-body{padding-bottom: 0;}
   .ant-calendar-picker{width: 100%;margin-bottom: 1em;}
   .ant-modal-footer{text-align: center;}
-  .ant-btn-primary{background-color: #fb6969;border-color: #fb6969;}
+  .ant-btn-primary{background-color: #34cf95;border-color: #34cf95;}
+  .ant-input{border: 0px;}
 }
 
 .tail{text-align: center;padding-bottom: 10px;/*position: absolute;

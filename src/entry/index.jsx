@@ -6,7 +6,6 @@ import { Checkbox,Button,Alert,Spin, message} from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
-import reqwest from 'reqwest';
 import classNames from 'classnames';
 import MD5 from "../bower_components/js-md5/src/md5";
 import Validator from "../bower_components/validator-js/validator.min";
@@ -96,21 +95,21 @@ class App extends Base {
         });
 
         return (
-            <Spin spinning={this.state.loading}  >
+
             <div className="sign_on ">
                 <Head title="Sign on" bcls="none"></Head>
                 <Logo></Logo>
+                <Spin spinning={this.state.loading}  >
+                    <form className="form">
+                        <label className="mobile" htmlFor="mobile">
+                            <input type="text" ref="mobile" id="email" placeholder="Mobile" onKeyUp={this.keyup} required/>
+                        </label>
 
-                <form className="form">
-                    <label className="mobile" htmlFor="mobile">
-                        <input type="text" ref="mobile" id="email" placeholder="Mobile" onKeyUp={this.keyup} required/>
-                    </label>
-
-                    <label className="pwd" htmlFor="pwd">
-                        <input type="password"  ref="pwd" id="pwd" placeholder="Password" onKeyUp={this.keyup} required/>
-                    </label>
-                </form>
-
+                        <label className="pwd" htmlFor="pwd">
+                            <input type="password"  ref="pwd" id="pwd" placeholder="Password" onKeyUp={this.keyup} required/>
+                        </label>
+                    </form>
+                </Spin>
 
                 <div className="sign_btn">
 
@@ -132,7 +131,7 @@ class App extends Base {
 
                 <PageTail/>
             </div>
-            </Spin>
+
         )
     }
 }
