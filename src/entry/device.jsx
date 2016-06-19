@@ -69,6 +69,14 @@ class App extends Base {
 
         let m_users_href = './users.html?imei=' + imei + "&d_t=7";
 
+
+        let name_url = './chg_device.html?d_t=1' + '&imei=' + imei;
+        let sim_phone_url = './chg_device.html?d_t=2' + '&imei=' + imei;
+        let sim_imei_url = './chg_device.html?d_t=3' + '&imei=' + imei;
+        let imei_url = './chg_device.html?d_t=4' + '&imei=' + imei;
+        let sen_url = "./chg_device.html?d_t=5" + '&imei=' + imei;
+        let pin_url = "./chg_device.html?d_t=6" + '&imei=' + imei;
+
         return (
             <div className="device">
                 <Head className="mb5" title={this.state.devieceName}></Head>
@@ -78,14 +86,14 @@ class App extends Base {
                 <Heading title="GPS" type="single" shape="switch" ></Heading>
 
                 <Heading title="Users" type="multiple" shape="forward" href={m_users_href} ></Heading>
-                <Heading title="PIN" type="multiple" shape="forward"  href="./chg_device.html?d_t=6"></Heading>
-                <Heading title="Sensitivity" className="mb5" type="multiple" shape="forward"  href="./chg_device.html?d_t=5"></Heading>
+                <Heading title="PIN" type="multiple" shape="forward"  href={pin_url}></Heading>
+                <Heading title="Sensitivity" className="mb5" type="multiple" shape="forward"  href={sen_url}></Heading>
 
-                <Heading title="Device IMEI" type="multiple" shape="forward" icon="right" href="./chg_device.html?d_t=4"></Heading>
-                <Heading title="SIM IMEI" type="multiple" shape="forward" icon="right" href="./chg_device.html?d_t=3"></Heading>
-                <Heading title="SIM Phone#" type="multiple" className="mb5" shape="forward" icon="right" href="./chg_device.html?d_t=2"></Heading>
+                <Heading title="Device IMEI" type="multiple" shape="forward" icon="right" href={imei_url}></Heading>
+                <Heading title="SIM IMEI" type="multiple" shape="forward" icon="right" href={sim_imei_url}></Heading>
+                <Heading title="SIM Phone#" type="multiple" className="mb5" shape="forward" icon="right" href={sim_phone_url}></Heading>
 
-                <Heading title="Device Name" className="mb5" type="single" shape="forward" icon="right" href="./chg_device.html?d_t=1"></Heading>
+                <Heading title="Device Name" className="mb5" type="single" shape="forward" icon="right" href={name_url}></Heading>
 
             </div>
         )

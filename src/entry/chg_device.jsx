@@ -22,7 +22,8 @@ class App extends Base {
         this.state = {
             btnActive: "",
             loading: false,
-            d_t: params['d_t']
+            d_t: params['d_t'],
+            imei: params['imei']
         };
 
         this.keyup = this.keyup.bind(this);
@@ -43,9 +44,7 @@ class App extends Base {
             url: Services.deviceinfo,
             type: "get",
             data: {
-                imei: imie,
-                mobile: "xx",
-                skey: "xx"
+                imei: imie
             },
             success: function(data){
 
@@ -56,6 +55,7 @@ class App extends Base {
                     that.forceUpdate();
             },
             error: function(data){
+                that.closeLoading();
                 message.error(data.err_msg);
             }
         });
@@ -64,7 +64,6 @@ class App extends Base {
     getByType(type){
         var key = "";
         type = parseInt(type);
-        console.log(type)
 
         switch (type){
             case 1:
@@ -114,7 +113,7 @@ class App extends Base {
             data[key] = new_value;
 
             util.request({
-                url: Services.modprofile,
+                url: Services.moddevice,
                 type: "get",
                 data: data,
                 success: function(data){
@@ -155,7 +154,7 @@ class App extends Base {
 
 
         var inp_str;
-        if( old_val){
+        if( old_val!= undefined || old_val){
             inp_str = <input type="text" ref='ipt' id="name" defaultValue={old_val} onKeyUp={this.keyup} required/>
         }
 

@@ -30,10 +30,11 @@ class App extends Base {
 
     validate(){
         let imei = this.refs.imei.value;
+        let name = this.refs.name.value;
         let sim_imei = this.refs.sim_imei.value;
         let sim_phone = this.refs.sim_phone.value;
 
-        if(imei!= "" && sim_imei != "" && sim_phone!="")  {
+        if(imei!= "" && name !="" && sim_imei != "" && sim_phone!="" && Validator.isLength(imei, 15) && Validator.isLength(sim_imei, 15) )  {
             this.state.btnActive = "active";
         }else {
             this.state.btnActive = "";
@@ -45,27 +46,31 @@ class App extends Base {
         var that = this;
         if(this.state.btnActive == "active"){
             let imei = this.refs.imei.value;
-            let pwd = this.refs.pwd.value;
+            let pwd = this.refs.pwd.value || "1234";
+            let name = this.refs.name.value;
             let sim_imei = this.refs.sim_imei.value;
             let sim_phone = this.refs.sim_phone.value;
 
             this.showLoading();
 
             util.request({
-                url: Services.adddeviceuser,
+                url: Services.adddevice,
                 type: "get",
                 data: {
+                    name: name,
                     imei: imei,
-                    mobile: "xx",
-                    skey: "xx"
+                    passwd: pwd,
+                    sim_imei: sim_imei,
+                    sim_phone: sim_phone
                 },
                 success: function(data){
-                    //that.closeLoading();
+                    that.closeLoading();
 
                     window.location.href = "./main.html";
 
                 },
                 error: function(data){
+                    that.closeLoading();
                     message.error(data.err_msg);
                 }
             });
@@ -87,6 +92,10 @@ class App extends Base {
                 <form className="form no-icon mt5">
                     <label>
                         <input type="text" ref="imei" id="imei" placeholder="IMEI" onKeyUp={this.validate} required/>
+                    </label>
+
+                    <label>
+                        <input type="text"  ref="name"  id="name" placeholder="Name"  required/>
                     </label>
 
                     <label>

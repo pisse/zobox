@@ -2,13 +2,14 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Spin,Modal, Input } from 'antd';
+import { Checkbox,Button,Spin,Modal, Input, message } from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
 
 import $ from "../bower_components/jquery/dist/jquery";
 import Config from '../common/config';
+import Validator from "../bower_components/validator-js/validator.min";
 
 var Services = Config.service;
 
@@ -24,11 +25,9 @@ class App extends Base {
             userlist: []
         };
 
-        this.onChange = this.onChange.bind(this);
         this.showAdd = this.showAdd.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
         this.handleOk = this.handleOk.bind(this);
-
     }
 
     componentDidMount(){
@@ -63,14 +62,11 @@ class App extends Base {
         });
     }
 
-    onChange(val){
-        console.log(val);
-    }
-
     showAdd(){
         this.state.visible = true;
         this.forceUpdate();
     }
+
 
     handleCancel(){
         this.state.visible = false;
@@ -81,24 +77,28 @@ class App extends Base {
     handleOk(){
         var that = this;
         var imei = this.state.imei;
-        var name = this.refs.user.value;
+        var number = this.refs.user.value;
 
-        var user_name = $("#name").val();
+        var number = $("#number").val();
+
+        if( !( Validator.isNumeric(number) && Validator.isLength(number, {min:10,max:11}) ) ){
+            message.error("please enter phone number !");
+            return;
+        }
 
         //console.log(user_name);
 
         this.state.visible = false;
         this.showLoading();
 
-        $("#name").val("");
+        $("#number").val("");
 
         util.request({
             url: Services.adddeviceuser,
             type: "get",
             data: {
                 imei: imei,
-                mobile: "xx",
-                skey: "xx"
+                user: number
             },
             success: function(data){
                 //that.closeLoading();
@@ -108,23 +108,22 @@ class App extends Base {
                 that.forceUpdate();
             },
             error: function(data){
-                message.error(data.err_msg);
+                that.closeLoading();
+
+                message.error(data.err_msg, 3);
             }
         });
     }
 
     render(){
 
-        var that = this;
         const { userlist, ...others } = this.state;
-
-        console.log(userlist);
 
         var myList = userlist.map(function(v,idx){
 
             return (
                 <label key={idx}>
-                    <input type="text" readOnly id="user1"  value={v} onChange={that.onChange} required/>
+                    <input type="text" readOnly id="user1"  value={v} required/>
                 </label>
             )
         });
@@ -143,7 +142,7 @@ class App extends Base {
                 <Modal  className="map" title="" visible={this.state.visible} cancelText="Cancel"  okText="OK"  title="对话框标题"
                         onCancel={this.handleCancel} width="80%" onOk={this.handleOk}>
                     <p>
-                        <Input id="name" type="text" ref="user" placeholder="User" />
+                        <Input id="number" type="text" ref="user" placeholder="User" />
                     </p>
 
                 </Modal>

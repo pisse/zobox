@@ -42,15 +42,12 @@ class App extends Base {
         util.request({
             url: Services.devicelist,
             type: "get",
-            data: {
-                mobile: "xx",
-                mobile: "xx"
-            },
+            data: {},
             success: function(data){
 
                 that.closeLoading();
-                that.state.deviceList = data['my_device'];
-                that.state.otherDeviceList = data['other_device'];
+                that.state.deviceList = data['my_device'] || [];
+                that.state.otherDeviceList = data['other_device'] || [];
 
                 that.state.myDeviceNum = data['my_device_num'];
                 that.state.otherDeviceNum = data['other_device_num'];

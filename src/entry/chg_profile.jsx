@@ -2,7 +2,7 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Row,Spin,Cascader } from 'antd';
+import { Checkbox,Button,Row,Spin,Cascader,message } from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
@@ -24,19 +24,20 @@ class App extends Base {
             loading: false,
             p_t: params['p_t'],
             options: [{
-                value: '1',
+                value: 1,
                 label: 'American'
             },{
-                value: '2',
+                value: 2,
                 label: 'Britain'
             },{
-                value: '3',
+                value: 3,
                 label: 'China'
             }]
         };
 
         this.keyup = this.keyup.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount(){
@@ -45,18 +46,13 @@ class App extends Base {
 
     init(){
         var that = this;
-        var imie = this.state.imei;
 
         this.showLoading();
 
         util.request({
             url: Services.profile,
             type: "get",
-            data: {
-                imei: imie,
-                mobile: "xx",
-                skey: "xx"
-            },
+            data: {},
             success: function(data){
 
                     that.closeLoading();
@@ -71,6 +67,13 @@ class App extends Base {
                 message.error(data.err_msg);
             }
         });
+    }
+
+    onChange(value){
+        this.state.btnActive = 'active';
+        this.state.country_new = value[0];
+
+        this.forceUpdate();
     }
 
     getByType(type){
@@ -124,10 +127,12 @@ class App extends Base {
             var type = this.state.p_t;
             var key = this.getByType( type );
 
-            var new_value = this.refs.ipt.value;
+            if(key == "country"){
+                var new_value = this.state.country_new;
+            } else {
+                var new_value = this.refs.ipt.value;
+            }
             data[key] = new_value;
-
-            console.log(data)
 
             util.request({
                 url: Services.modprofile,
@@ -140,7 +145,8 @@ class App extends Base {
                         window.history.go(-1);
                 },
                 error: function(data){
-
+                    that.closeLoading();
+                    message.error(data.err_msg);
                 }
             });
         }
@@ -171,13 +177,14 @@ class App extends Base {
         var old_val = this.state[key];
 
         var inp_str;
-        if( key == "country" ){
+        if( key == "country" && old_val){
+            let dft = [old_val];
             inp_str = <label htmlFor="country">
                             <span className="coutry-wrap">
-                                 <Cascader options={this.state.options} onChange={this.onChange} defaultValue={["1"]} placeholder="Country"></Cascader>
+                                 <Cascader options={this.state.options} ref="country" onChange={this.onChange} defaultValue={dft} placeholder="Country"></Cascader>
                             </span>
                     </label>
-        } else if( old_val ){
+        } else if(old_val !==undefined || old_val){
             inp_str = <input type="text" ref='ipt' id="name" defaultValue={old_val} onKeyUp={this.keyup} required/>
         }
 

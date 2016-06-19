@@ -29,10 +29,7 @@ class App extends Base {
         util.request({
             url: Services.logout,
             type: "get",
-            data: {
-                mobile: "xx",
-                mobile: "xx"
-            },
+            data: {},
             success: function(data){
 
                 window.location.href = "./index.html";

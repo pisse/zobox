@@ -28,9 +28,9 @@ var data = {
         retcode: 0,retmsg: "sucess", userlist_num: /\d/,
         'userlist|2-5': ['Door', "Hourse", "Garage"]
     }),
+
     adddevice: Mock.mock({
-        retcode: 0,retmsg: "sucess", imei: /imei-[A-Z]-[0-9]/,
-        'userlist|2-5': ['Door', "Hourse", "Garage"]
+        retcode: 0,retmsg: "sucess"
     }),
 
     moddevice:  Mock.mock({

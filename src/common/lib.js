@@ -8,15 +8,31 @@ var util = {
 
     request: function(opt){
 
-        if(Config.isDev){
+        if(Config.useMock){
 
             if ( opt.success ) {
                 setTimeout(function(){
                     opt.success(Data[opt.url]);
-                }, 500);
+                }, 100);
             }
 
         } else {
+
+            if( !opt.data ){
+                opt.data = {};
+            }
+
+            var mobile =  localStorage.getItem("mobile");
+            var skey =  localStorage.getItem("skey");
+
+            if( mobile && !opt.data.mobile ){
+                opt.data.mobile = mobile;
+            }
+            if( skey ){
+                opt.data.skey = skey;
+            }
+            console.log(opt.data);
+
 
             $.getJSON({
                 type: opt.type ? opt.type : 'post',
@@ -24,7 +40,7 @@ var util = {
                 data: opt.data,
                 dataType: opt.dataType ? opt.dataType : 'json',
                 success: function(rdata) {
-                    if ( rdata.retcode === 0 ) {
+                    if ( rdata.ret_code == 0 || rdata.err_code == 0 ) {
                         if ( opt.success ) {
                             opt.success(rdata);
                         }
@@ -35,7 +51,9 @@ var util = {
                         }
                     }
                 },
-                error: function(rdata) {}
+                error: function(rdata) {
+
+                }
             });
 
         }

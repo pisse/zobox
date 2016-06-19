@@ -2,11 +2,12 @@ import util from '../common/lib';
 import Base from './_base';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Row,Spin,Cascader } from 'antd';
+import { Checkbox,Button,Row,Spin,Cascader,message } from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
 import classNames from 'classnames';
+import MD5 from "../bower_components/js-md5/src/md5";
 
 import Config from '../common/config';
 
@@ -26,6 +27,7 @@ class App extends Base {
             btnActive: "",
 
             country: "1",
+            count: 0,
 
             options: [{
                 value: '1',
@@ -44,6 +46,7 @@ class App extends Base {
         this.codeKeyup = this.codeKeyup.bind(this);
         this.getVcode = this.getVcode.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.startTick = this.startTick.bind(this);
     }
 
     onChange(value){
@@ -56,8 +59,8 @@ class App extends Base {
         if(valid){
             this.showLoading();
 
-            let pwd = this.refs.pwd.value;
-            let pwd_confirm = this.refs.confirmPwd.value;
+            let pwd = MD5( this.refs.pwd.value );
+            //let pwd_confirm = this.refs.confirmPwd.value;
             let vcode = this.refs.vcode.value;
             let phoneNum = this.refs.mobile.value;
             let country = this.state.country;
@@ -66,18 +69,22 @@ class App extends Base {
                 url: Services.register,
                 type: "get",
                 data: {
-                    mobile: "xx",
-                    passwd: "xx",
-                    country: "",
-                    vcode: ""
+                    mobile: phoneNum,
+                    passwd: pwd,
+                    country: country,
+                    vcode: vcode
                 },
                 success: function(data){
 
                     that.closeLoading();
-                    window.location.href = "./index.html";
+
+                    window.location.href = "./index.html?mobile=" + phoneNum;
                 },
                 error: function(data){
 
+                    that.closeLoading();
+
+                    message.error( data.err_msg );
                 }
             });
         }
@@ -102,7 +109,7 @@ class App extends Base {
         let pwd_confirm = this.refs.confirmPwd.value;
         let vcode = this.refs.vcode.value;
 
-        if( pwd == pwd_confirm && vcode!="" && this.state.vcodeActive !=""){
+        if( pwd == pwd_confirm && vcode!=""){
             this.state.btnActive = 'active';
             ret = true;
         } else {
@@ -113,24 +120,50 @@ class App extends Base {
         return ret;
     }
 
+    startTick(){
+        var that = this;
+        if( this.state.count > 0){
+            this.state.count = this.state.count -1;
+
+            this.forceUpdate();
+
+            setTimeout( function(){
+                that.startTick();
+            }, 1000 );
+        } else {
+            this.state.waiting = false;
+            this.mobileKeyup();
+        }
+    }
+
     getVcode(){
         var that = this;
         if(this.state.vcodeActive =="active"){
-           /* util.request({
+
+            let number = this.refs.mobile.value;
+            let country = this.state.country;
+
+            util.request({
                 url: Services.getvcode,
                 type: "get",
                 data: {
-                    mobile: "xx",
-                    country: "xx"
+                    mobile: number,
+                    country: country
                 },
-                success: function(data){}
+                success: function(data){
+                },
+                error: function(data){
+                    message.error(data.retmsg);
+                }
             });
-            */
-            this.state.vcodeActive = "";
 
-            setTimeout( function(){
-                that.mobileKeyup();
-            }, 1000*60 );
+            this.state.vcodeActive = "";
+            this.state.waiting = true;
+            this.state.count = 60;
+
+
+
+            this.startTick();
 
             this.forceUpdate();
         }
@@ -147,6 +180,8 @@ class App extends Base {
             "primary": true,
             "active": this.state.btnActive,
         });
+
+        let code_title = this.state.waiting ? this.state.count: "get code";
 
         return (
 
@@ -177,7 +212,7 @@ class App extends Base {
 
                         <label className="vcode" htmlFor="vcode">
                             <input type="text" ref="vcode" id="vcode" placeholder="Verification Code" onKeyUp={this.codeKeyup} required/>
-                            <i className={vcodeCls} onClick={this.getVcode}>Get Code</i>
+                            <i className={vcodeCls} onClick={this.getVcode}>{code_title}</i>
                         </label>
 
                     </form>

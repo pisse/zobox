@@ -17,9 +17,11 @@ class App extends Base {
     constructor(){
         super();
 
+        var params = util.getUrlParams();
         this.state = {
             infoCls: "none",
             btnActive: "",
+            mobile:params['mobile'],
             loading: false
         };
 
@@ -52,6 +54,9 @@ class App extends Base {
                 success: function(data){
 
                     that.state.infoCls = "";
+
+                    localStorage.setItem("mobile", data['mobile']);
+                    localStorage.setItem("skey", data['skey']);
 
                     that.closeLoading();
                     window.location.href = "./main.html";
@@ -94,6 +99,8 @@ class App extends Base {
             "active": this.state.btnActive,
         });
 
+        let mobile = this.state.mobile;
+
         return (
 
             <div className="sign_on ">
@@ -102,7 +109,7 @@ class App extends Base {
                 <Spin spinning={this.state.loading}  >
                     <form className="form">
                         <label className="mobile" htmlFor="mobile">
-                            <input type="text" ref="mobile" id="email" placeholder="Mobile" onKeyUp={this.keyup} required/>
+                            <input type="text" ref="mobile" id="email" defaultValue={mobile} placeholder="Mobile" onKeyUp={this.keyup} required/>
                         </label>
 
                         <label className="pwd" htmlFor="pwd">
