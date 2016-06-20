@@ -36,7 +36,7 @@ export default class Heading extends Component {
 	render(){
 
 		const props = this.props;
-		const { type, shape,title, className, prefixCls, href,...others } = props;
+		const { type, shape,title, className, prefixCls,val, href,...others } = props;
 
 		const classes = classNames({
 			[prefixCls]: true,
@@ -48,6 +48,7 @@ export default class Heading extends Component {
 		return (
 			<p className={classes} onClick={this.handleClick.bind(this)}>
 				{title}
+				<span className="val">{val}</span>
 				{shape=="switch" ? <Switch defaultChecked={false} onChange={this.onChange} />: null}
 			</p>
 		)

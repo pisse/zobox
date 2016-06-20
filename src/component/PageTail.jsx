@@ -29,8 +29,7 @@ class PageTail extends Component {
 		return (
 			<div className="tail">
 				<p>Copyright by Gyro Alarm Inc.</p>
-				<p>Call 1-800-GyroCall or email support@GyroCall.</p>
-				<p>com for customer service.</p>
+
 			</div>
 		)
 	}

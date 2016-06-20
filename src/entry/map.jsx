@@ -14,7 +14,7 @@ class App extends Component {
         super();
 
         this.state = {
-            visible: true
+            visible: false
         };
 
         this.onStartChange = this.onStartChange.bind(this);
@@ -49,7 +49,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        /*var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},
             zoom: 8,
 
@@ -64,8 +64,8 @@ class App extends Component {
             }
 
 
-        });*/
-        var map = new BMap.Map("map");    // 创建Map实例
+        });
+        /*var map = new BMap.Map("map");    // 创建Map实例
         map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
         //map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
         //map.setZoom(11);
@@ -77,7 +77,7 @@ class App extends Component {
         map.addControl(new BMap.ScaleControl({}));
         map.addControl(new BMap.OverviewMapControl());
         map.addControl(new BMap.MapTypeControl());
-        map.addControl(new BMap.GeolocationControl());
+        map.addControl(new BMap.GeolocationControl());*/
 
         $("#time_range").show();
     }

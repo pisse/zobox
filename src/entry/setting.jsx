@@ -45,7 +45,7 @@ class App extends Base {
 
         return (
             <div className="setting ">
-                <Head title="Setting"></Head>
+                <Head title=""></Head>
 
                 <Heading className="mt5" title="Profile" type="multiple" shape="forward"  href="./profile.html"></Heading>
                 <Heading title="General" type="multiple" shape="forward" href="./about.html"></Heading>

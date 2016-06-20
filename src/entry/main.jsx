@@ -56,6 +56,7 @@ class App extends Base {
 
             },
             error: function(data){
+                that.closeLoading();
                 message.error(data.err_msg);
             }
         });

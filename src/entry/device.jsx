@@ -8,6 +8,7 @@ import Heading from '../component/Heading';
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
 import QueueAnim from 'rc-queue-anim'
+import $ from "../bower_components/jquery/dist/jquery";
 
 import Config from '../common/config';
 
@@ -24,9 +25,12 @@ class App extends Base {
 
             imei: params['imei']
         }
-
-        this.onChange = this.onChange.bind(this);
     }
+
+    componentDidMount(){
+        this.init();
+    }
+
 
     init(){
         var that = this;
@@ -36,16 +40,13 @@ class App extends Base {
             url: Services.deviceinfo,
             type: "get",
             data: {
-                imei: imie,
-                mobile: "xx",
-                skey: "xx"
+                imei: imie
             },
             success: function(data){
-                console.log(data);
 
                 that.closeLoading();
 
-                that.state.devieceName = data['name'];
+                $.extend(that.state, data);
 
                 that.forceUpdate();
 
@@ -56,16 +57,9 @@ class App extends Base {
         });
     }
 
-    onChange(){
-        console.log(1);
-    }
-    clickName(){
-
-    }
-
     render(){
 
-        const {imei,devieceName, ...others } = this.state;
+        const {imei,name, sim_imei,sim_phone, ...others } = this.state;
 
         let m_users_href = './users.html?imei=' + imei + "&d_t=7";
 
@@ -86,14 +80,14 @@ class App extends Base {
                 <Heading title="GPS" type="single" shape="switch" ></Heading>
 
                 <Heading title="Users" type="multiple" shape="forward" href={m_users_href} ></Heading>
-                <Heading title="PIN" type="multiple" shape="forward"  href={pin_url}></Heading>
                 <Heading title="Sensitivity" className="mb5" type="multiple" shape="forward"  href={sen_url}></Heading>
 
-                <Heading title="Device IMEI" type="multiple" shape="forward" icon="right" href={imei_url}></Heading>
-                <Heading title="SIM IMEI" type="multiple" shape="forward" icon="right" href={sim_imei_url}></Heading>
-                <Heading title="SIM Phone#" type="multiple" className="mb5" shape="forward" icon="right" href={sim_phone_url}></Heading>
+                <Heading title="IMEI" val={imei} type="multiple" shape="forward" icon="right" href={imei_url}></Heading>
+                <Heading title="Name" val={name} type="multiple" shape="forward" icon="right" href={name_url}></Heading>
+                <Heading title="Password"  className="mb5" type="multiple" shape="forward"  href={pin_url}></Heading>
 
-                <Heading title="Device Name" className="mb5" type="single" shape="forward" icon="right" href={name_url}></Heading>
+                <Heading title="SIM IMEI" val={sim_imei} type="multiple" shape="forward" icon="right" href={sim_imei_url}></Heading>
+                <Heading title="SIM Phone" val={sim_phone} type="multiple" className="mb5" shape="forward" icon="right" href={sim_phone_url}></Heading>
 
             </div>
         )

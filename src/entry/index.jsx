@@ -30,7 +30,7 @@ class App extends Base {
         this.keyup = this.keyup.bind(this);
     }
 
-    onChange(){
+    forget(){
 
     }
 
@@ -104,7 +104,7 @@ class App extends Base {
         return (
 
             <div className="sign_on ">
-                <Head title="Sign on" bcls="none"></Head>
+                <Head title="" bcls="none"></Head>
                 <Logo></Logo>
                 <Spin spinning={this.state.loading}  >
                     <form className="form">
@@ -128,10 +128,9 @@ class App extends Base {
                         <Button type={btnCls} onClick={this.login}>Sign In</Button>
                     </div>
 
-                        <Checkbox defaultChecked={false} onChange={this.onChange}>Forget Password</Checkbox>
-                    <br/>
-                    <p className="reg_btn">
-                        <Button type="primary" onClick={this.register}>Register</Button>
+                    <p className="reg_btn mb10">
+                        <a href="javascript:;" className="forget" onClick={this.forget}>Forget Password</a>
+                        <a href="javascript:;" className="register" onClick={this.register}>Register</a>
                     </p>
 
                 </div>

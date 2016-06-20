@@ -60,11 +60,10 @@ class App extends Base {
     }
 
     onkeyup(){
-        var pwd = this.refs.pwd.value;
         var n_pwd = this.refs.npwd.value;
         var vcode = this.refs.vcode.value;
 
-        if(  pwd == n_pwd && pwd !="" && vcode!="" ){
+        if( n_pwd !="" && vcode!="" ){
             this.state.btnActive = 'active';
         } else {
             this.state.btnActive = '';
@@ -74,11 +73,10 @@ class App extends Base {
 
     codeKeyup(){
         let ret = false;
-        let pwd = this.refs.pwd.value;
         let n_pwd = this.refs.npwd.value;
         let vcode = this.refs.vcode.value;
 
-        if(  pwd == n_pwd && pwd !="" && vcode!="" ){
+        if(  n_pwd !="" && vcode!="" ){
             this.state.btnActive = 'active';
             ret = true;
         } else {
@@ -142,7 +140,7 @@ class App extends Base {
             this.showLoading();
 
             let vcode = this.refs.vcode.value;
-            let pwd = MD5( this.refs.pwd.value);
+            let pwd = MD5( this.refs.npwd.value);
 
             util.request({
                 url: Services.chgpasswd,
@@ -181,12 +179,9 @@ class App extends Base {
 
         return (
             <div className="register">
-                <Head title="Change Password"></Head>
+                <Head title=""></Head>
 
                 <form className="form no-icon mt5">
-                    <label>
-                        <input ref="pwd" type="text" id="pwd" placeholder="Old Password" onKeyUp={this.onkeyup} required/>
-                    </label>
 
                     <label>
                         <input ref="npwd" type="password" id="npwd" placeholder="New Password" onKeyUp={this.onkeyup} required/>

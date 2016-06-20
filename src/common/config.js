@@ -1,5 +1,5 @@
 
-var isDev = true;
+var isDev = false;
 
 var config = {
 

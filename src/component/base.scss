@@ -19,7 +19,7 @@ body{background-color: #f3f3f3;}
 
   h2{text-align: center;height: 36px;line-height: 36px;font-family: Roboto;  font-size: 26px;}
 
-  .setting,.add-device{position: relative;width: 50%;float:left;display: inline-block;color: #333333;font-family: "Hiragino Sans GB"; font-weight: normal;font-size: 22px;}
+  .setting,.add-device{position: relative;width: 50%; height: 100%; float:left;display: inline-block;color: #333333;font-family: "Hiragino Sans GB"; font-weight: normal;font-size: 22px;}
   .setting{text-align: left;padding-left:32px;}
   .add-device{text-align: right; padding-right: 37px;}
 
@@ -155,12 +155,12 @@ body{background-color: #f3f3f3;}
     width: 80px;
     text-align: center;
 
-    background-color: #eee;
-    color: #848689;
+    background-color: #34cf95;
+    color: #fff;
+    opacity: 0.5;
 
     &.active{
-      background-color: #34cf95;
-      color: #fff;
+      opacity: 1;
     }
   }
 
@@ -206,14 +206,13 @@ body{background-color: #f3f3f3;}
 
   .ant-btn{width:60%; margin-bottom: 10px;font-weight: bold;}
   .ant-btn-primary{
-    background-color: #eee;
-    border-color: #eee;
-    color: #848689;
+    background-color: #34cf95;
+    border-color: #34cf95;
+    color: #fff;
+    opacity: 0.5;
 
     &.active{
-      background-color: #34cf95;
-      border-color: #34cf95;
-      color: #fff;
+      opacity: 1;
     }
   }
 
@@ -243,6 +242,10 @@ body{background-color: #f3f3f3;}
   .reg_btn{
     margin-top: 10px;
     .ant-btn-primary{background-color: initial;border-color: #34cf95;color: #727272;}
+    a{display: inline-block;width: 50%;}
+    .forget{text-align: left;padding-left: 15px;}
+    .register{text-align: right;padding-right: 15px;}
+    @include clearfix;
   }
   .ant-checkbox-checked .ant-checkbox-inner{
     background-color: #34cf95;
@@ -288,6 +291,11 @@ body{background-color: #f3f3f3;}
     right: 10px;
     top: 9px;
   }
+  .val{
+    position: absolute;
+    right: 25px;
+    color: #b1abab;
+  }
 }
 .heading-single{
   margin-bottom: 1em;
@@ -300,7 +308,7 @@ body{background-color: #f3f3f3;}
   width: 20px;
   height: $height40;
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   right:2px;
   background-size: 50%;
   background-repeat: no-repeat;
@@ -408,7 +416,7 @@ body{background-color: #f3f3f3;}
 .sinput{
   height: 26px;
   line-height: 26px;
-  margin: 7px 50px 3px 50px;
+  margin: 7px 10px 3px 50px;
   position: relative;
   background: #fff;
   display: block;
@@ -484,7 +492,9 @@ body{background-color: #f3f3f3;}
   .ant-input{border: 0px;}
 }
 
-.tail{text-align: center;padding-bottom: 10px;/*position: absolute;
+.tail{text-align: center;padding-bottom: 10px;
+  position: absolute;
   bottom: 0;
   right: 0;
-  left: 0;*/}
+  left: 0;
+}

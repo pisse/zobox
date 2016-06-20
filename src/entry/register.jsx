@@ -186,7 +186,7 @@ class App extends Base {
         return (
 
             <div className="register ">
-                <Head title="Register"></Head>
+                <Head title=""></Head>
                 <Logo></Logo>
 
                 <Spin spinning={this.state.loading}  >

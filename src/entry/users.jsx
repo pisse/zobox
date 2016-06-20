@@ -45,9 +45,7 @@ class App extends Base {
             url: Services.deviceuser,
             type: "get",
             data: {
-                imei: imei,
-                mobile: "xx",
-                skey: "xx"
+                imei: imei
             },
             success: function(data){
                 that.closeLoading();
@@ -57,6 +55,7 @@ class App extends Base {
                 that.forceUpdate();
             },
             error: function(data){
+                that.closeLoading();
                 message.error(data.err_msg);
             }
         });

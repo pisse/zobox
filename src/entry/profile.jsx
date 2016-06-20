@@ -1,4 +1,5 @@
-import '../common/lib';
+import util from '../common/lib';
+import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Checkbox,Button,Row } from 'antd';
@@ -6,12 +7,47 @@ import Head from '../component/Head'
 import Heading from '../component/Heading';
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
+import $ from "../bower_components/jquery/dist/jquery";
+import Config from '../common/config';
 
+var Services = Config.service;
 
 class App extends Component {
 
     constructor(){
         super();
+
+        this.state = {};
+    }
+
+    componentDidMount(){
+        this.init();
+    }
+
+    init(){
+        var that = this;
+
+        //this.showLoading();
+
+        util.request({
+            url: Services.profile,
+            type: "get",
+            data: {},
+            success: function(data){
+
+                //that.closeLoading();
+
+                $.extend(that.state, data);
+
+                that.forceUpdate();
+
+
+            },
+            error: function(data){
+
+                message.error(data.err_msg);
+            }
+        });
     }
 
     handleClick(){
@@ -20,23 +56,26 @@ class App extends Component {
 
     render(){
 
+        const { first_name,last_name,country,state,city, street, zipcode, ...others } = this.state;
+        var mobile =  localStorage.getItem("mobile");
+
         return (
             <div className="profile">
-                <Head title="Profile"></Head>
+                <Head title=""></Head>
 
 
-                <Heading title="First Name"  className="mt5" type="multiple" shape="forward" icon="right" href="./chg_profile.html?p_t=1" ></Heading>
-                <Heading title="Last Name" type="multiple" shape="forward" href="./chg_profile.html?p_t=2"></Heading>
-                <Heading title="Country" type="multiple" shape="forward" href="./chg_profile.html?p_t=0"></Heading>
-                <Heading title="Mobile" type="multiple" shape="forward" href="./chg_profile.html?p_t=3"></Heading>
+                <Heading title="First Name" val={first_name}  className="mt5" type="multiple" shape="forward" icon="right" href="./chg_profile.html?p_t=1" ></Heading>
+                <Heading title="Last Name" val={last_name} type="multiple" shape="forward" href="./chg_profile.html?p_t=2"></Heading>
+                <Heading title="Country" val={country} type="multiple" ></Heading>
+                <Heading title="Mobile" val={mobile} type="multiple" ></Heading>
 
-                <Heading title="State" className="mt5" type="multiple" shape="forward" href="./chg_profile.html?p_t=4"></Heading>
-                <Heading title="City" type="multiple" shape="forward" href="./chg_profile.html?p_t=5"></Heading>
-                <Heading title="Street" className="" type="multiple" shape="forward" href="./chg_profile.html?p_t=6"></Heading>
-                <Heading title="Post Code" type="multiple" shape="forward" href="./chg_profile.html?p_t=7"></Heading>
+                <Heading title="State" val={state} className="mt5" type="multiple" shape="forward" href="./chg_profile.html?p_t=4"></Heading>
+                <Heading title="City" val={city} type="multiple" shape="forward" href="./chg_profile.html?p_t=5"></Heading>
+                <Heading title="Street" val={street} className="" type="multiple" shape="forward" href="./chg_profile.html?p_t=6"></Heading>
+                <Heading title="Post Code" val={zipcode} type="multiple" shape="forward" href="./chg_profile.html?p_t=7"></Heading>
 
 
-                <Heading className="mt5" title="Change Password" type="multiple" shape="forward"  href="./chg_pwd.html"></Heading>
+                <Heading className="mt5" title="Change Password" type="multiple"  href="./chg_pwd.html"></Heading>
 
             </div>
         )
