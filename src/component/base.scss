@@ -189,8 +189,9 @@ body{background-color: #f3f3f3;}
     border:none;
     padding:0 0 0 36px;
     background: transparent;
-    font-size: 18px;
-    font-family: "Hiragino Sans GB";
+    font-size: 16px;
+   /* font-family: "Hiragino Sans GB";*/
+   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
     &:focus{
       outline: none;
     }
@@ -263,7 +264,7 @@ body{background-color: #f3f3f3;}
 }
 .ant-message-notice{text-align:center;}
 .ant-message-notice-content{background:rgba(0,0,0,.5);color:#fff; font-size:13px;}
-.ant-btn{line-height: 2;}
+.ant-btn{font-size: 16px;}
 .main{
   .thead{background-color: #fff;margin-bottom: 10px;}
   .device-list{

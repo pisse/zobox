@@ -44,6 +44,10 @@ class App extends Base {
             $(this).removeClass('translation');
         });
 
+        Zepto(document).on("click", "label", function(e){
+            $(this).removeClass('translation');
+        });
+
         Zepto(document).on('click', '.delete', function(e){
             var user = $(this).prev().val();
 

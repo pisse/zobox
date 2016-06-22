@@ -102,6 +102,10 @@ class App extends Base {
     componentDidMount(){
         var that = this;
 
+        if(typeof google == "undefined"){
+            return;
+        }
+
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 40.43, lng: -74.00},
             zoom: 10,

@@ -37,14 +37,17 @@ class App extends Base {
         this.getList();
 
         Zepto(document).on("swipeLeft", ".list-item", function(e){
-            console.log(this);
             $(this).addClass('translation');
         });
 
         Zepto(document).on("swipeRight", ".list-item", function(e){
-            console.log(this);
             $(this).removeClass('translation');
         });
+
+        Zepto(document).on("click", ".list-item", function(e){
+            $(this).removeClass('translation');
+        });
+
     }
 
     getList(){
