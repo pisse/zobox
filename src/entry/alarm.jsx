@@ -1,19 +1,19 @@
-import '../common/lib';
+import util from '../common/lib';
+import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Timeline, Icon, Tag } from 'antd';
 import Head from '../component/Head'
 import Heading from '../component/Heading';
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 
 
-class App extends Component {
+class App extends Base {
 
     constructor(){
         super();
 
         this.state = {
+            loading: false,
             devieceName: 'Door'
         }
     }

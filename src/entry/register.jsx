@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { Checkbox,Button,Row,Spin,Cascader,message } from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 import classNames from 'classnames';
 import MD5 from "../bower_components/js-md5/src/md5";
 
@@ -217,7 +216,7 @@ class App extends Base {
 
                     </form>
                 </Spin>
-                <div className="sign_btn">
+                <div className="sign_btn mt5">
                         <Button type={btnCls} onClick={this.register.bind(this)}>Register</Button>
                 </div>
             </div>

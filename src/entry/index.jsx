@@ -2,7 +2,7 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Alert,Spin, message} from 'antd';
+import { Button,Alert,Spin, message} from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
@@ -26,12 +26,8 @@ class App extends Base {
         };
 
         this.login = this.login.bind(this);
-        this.register = this.register.bind(this);
+        //this.register = this.register.bind(this);
         this.keyup = this.keyup.bind(this);
-    }
-
-    forget(){
-
     }
 
     login(){
@@ -53,7 +49,7 @@ class App extends Base {
                 },
                 success: function(data){
 
-                    that.state.infoCls = "";
+                    //that.state.infoCls = "";
 
                     localStorage.setItem("mobile", data['mobile']);
                     localStorage.setItem("skey", data['skey']);
@@ -82,17 +78,19 @@ class App extends Base {
         this.forceUpdate();
     }
 
-    register(){
-        window.location.href = "./register.html";
-    }
 
     render(){
 
-        let is_none = this.state.infoCls;
+        /*let is_none = this.state.infoCls;
         let info_cls = classNames({
             wrap_info: true,
             none: is_none
         });
+         <Alert message=""
+         description="No worries.We will send you a Email to your registered account.Please sign on with your temporary password. Once
+         you  signed on,please update your password"
+         type="info" />
+        */
 
         let btnCls =  classNames({
             "primary": true,
@@ -119,19 +117,14 @@ class App extends Base {
                 </Spin>
 
                 <div className="sign_btn">
+                    <p className="reg_btn mb10">
+                        <a href="./forget_pwd.html" className="forget" >Forget Password</a>
+                        <a href="./register.html" className="register" >Register</a>
+                    </p>
 
-                    <div className={info_cls}>
-                        <Alert message=""
-                               description="No worries.We will send you a Email to your registered account.Please sign on with your temporary password. Once
-                           you  signed on,please update your password"
-                               type="info" />
+                    <div className="wrap_info">
                         <Button type={btnCls} onClick={this.login}>Sign In</Button>
                     </div>
-
-                    <p className="reg_btn mb10">
-                        <a href="javascript:;" className="forget" onClick={this.forget}>Forget Password</a>
-                        <a href="javascript:;" className="register" onClick={this.register}>Register</a>
-                    </p>
 
                 </div>
 

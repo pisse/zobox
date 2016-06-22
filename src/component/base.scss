@@ -15,7 +15,7 @@ body{background-color: #f3f3f3;}
 .head{
   padding: 18px 0 1px 0;
   background-color: #fff;
-  border-bottom: 1px solid #a4a4a4;
+  border-bottom: 1px solid #e3e3e3;
 
   h2{text-align: center;height: 36px;line-height: 36px;font-family: Roboto;  font-size: 26px;}
 
@@ -118,7 +118,7 @@ body{background-color: #f3f3f3;}
     height: $height45;
     position: absolute;
     bottom: 0;
-    left:20px;
+    left:10px;
     background-size: 55%;
     background-repeat: no-repeat;
     background-position: left center;
@@ -134,7 +134,7 @@ body{background-color: #f3f3f3;}
     background-image: url(/res/img/mobile.png);
   }
   label[for="country"]{
-    padding-left: 50px;
+    padding-left: 36px;
     &::before{
       background-image: url(/res/img/country.png);
     }
@@ -187,7 +187,7 @@ body{background-color: #f3f3f3;}
     line-height: 24px;
     box-sizing:border-box;
     border:none;
-    padding:0 0 0 50px;
+    padding:0 0 0 36px;
     background: transparent;
     font-size: 18px;
     font-family: "Hiragino Sans GB";
@@ -202,9 +202,9 @@ body{background-color: #f3f3f3;}
 
 .sign_btn{
   text-align: center;
-  padding: 6% 0 5% 0;
+  padding: 0 0 5% 0;
 
-  .ant-btn{width:60%; margin-bottom: 10px;font-weight: bold;}
+  .ant-btn{width:90%; margin-bottom: 10px;font-weight: bold;}
   .ant-btn-primary{
     background-color: #34cf95;
     border-color: #34cf95;
@@ -263,6 +263,7 @@ body{background-color: #f3f3f3;}
 }
 .ant-message-notice{text-align:center;}
 .ant-message-notice-content{background:rgba(0,0,0,.5);color:#fff; font-size:13px;}
+.ant-btn{line-height: 2;}
 .main{
   .thead{background-color: #fff;margin-bottom: 10px;}
   .device-list{
@@ -270,11 +271,81 @@ body{background-color: #f3f3f3;}
     a{
       vertical-align: middle;
     }
+    .list-item{
+      position: relative;
+      overflow: hidden;
+
+      .delete{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform:translateX(55px);
+        overflow: hidden;
+        text-align: center;
+        font-size: 18px;
+        transition: transform .5s,height 0s ease .5s;
+
+        width: 50px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #e81631;
+        color: #fff;
+      }
+
+      .row{
+        @include transition(all .5s);
+      }
+
+      &.translation{
+        .row{
+          @include transform(translateX(-50px));
+        }
+        .delete{
+          transform: translateX(5px);
+          transition:transform .5s;
+        }
+
+      }
+    }
   }
   .row-flex-middle>div{
     height: 40px;
     text-align: center;
     line-height: 40px;
+  }
+
+}
+
+.users{
+  .form{
+    label{
+      overflow: hidden;
+
+      .delete{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform:translateX(55px);
+        overflow: hidden;
+        text-align: center;
+        font-size: 18px;
+        transition: transform .5s,height 0s ease .5s;
+
+        width: 50px;
+        height: 45px;
+        line-height: 45px;
+        background-color: #e81631;
+        color: #fff;
+      }
+
+      &.translation{
+        .delete{
+          transform: translateX(5px);
+          transition:transform .5s;
+        }
+      }
+
+    }
   }
 }
 

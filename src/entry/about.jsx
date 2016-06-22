@@ -5,7 +5,6 @@ import { Checkbox,Button,Row } from 'antd';
 import Head from '../component/Head'
 import Heading from '../component/Heading';
 import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 
 
 class App extends Component {

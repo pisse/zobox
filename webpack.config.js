@@ -40,10 +40,14 @@ var getEntry = function(){
     var ret = {};
     _fs.readdirSync(entry_idr).forEach(function(item,i){
         var name = _path.basename(item, '.jsx');
-        if(name[0] != "_"){
+        if(name[0] != "_" && name!="test" ){
             ret[name] = './src/entry/' +  item;
         }
     });
+
+   /* var ret = {
+        "test": "./src/entry/test.jsx"
+    };*/
     return ret;
 }
 
@@ -70,7 +74,11 @@ module.exports = {//function(webpackConfig) {
 
     resolve: {
         modulesDirectories: ['node_modules', (0, _path.join)(__dirname, '../node_modules')],
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        alias: {
+            'jquery': _path.resolve(__dirname, 'src/bower_components/jquery/dist/jquery.js'),
+            'zepto': _path.resolve(__dirname, 'src/bower_components/zeptojs/src/zepto.js')
+        }
     },
 
     resolveLoader: {
@@ -144,7 +152,15 @@ module.exports = {//function(webpackConfig) {
     plugins: [new _webpack.optimize.CommonsChunkPlugin('common', commonName), new _extractTextWebpackPlugin(cssFileName, {
         disable: false,
         allChunks: true
-    }), new _webpack.optimize.OccurenceOrderPlugin()]
+    }),
+        new _webpack.ProvidePlugin({
+          /*  $: "jquery",
+            jQuery: "jquery",
+            "window.jQuery": "jquery",*/
+            Zepto: 'zepto',
+            "window.Zepto": "zepto",
+        }),
+        new _webpack.optimize.OccurenceOrderPlugin()]
 };
 
 /* return webpackConfig;

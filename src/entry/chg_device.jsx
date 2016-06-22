@@ -160,7 +160,7 @@ class App extends Base {
 
         return (
             <div className="register">
-                <Head title="Device"></Head>
+                <Head title=""></Head>
 
                 <Spin spinning={this.state.loading}  >
                     <form className="form no-icon mt5">
@@ -170,7 +170,7 @@ class App extends Base {
                     </form>
                 </Spin>
 
-                <div className="sign_btn">
+                <div className="sign_btn mt5">
                     <Button type={btnCls} onClick={this.handleClick}>Confirm</Button>
                 </div>
 

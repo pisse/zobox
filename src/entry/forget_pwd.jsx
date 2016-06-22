@@ -7,7 +7,7 @@ import Head from '../component/Head'
 import classNames from 'classnames';
 import $ from "../bower_components/jquery/dist/jquery";
 import MD5 from "../bower_components/js-md5/src/md5";
-
+import Validator from "../bower_components/validator-js/validator.min";
 import Config from '../common/config';
 
 var Services = Config.service;
@@ -20,7 +20,7 @@ class App extends Base {
         this.state = {
             loading: false,
             btnActive : "",
-            vcodeActive: "active",
+            vcodeActive: "",
 
             count: 0,
         };
@@ -58,10 +58,17 @@ class App extends Base {
     }
 
     onkeyup(){
+        var mobile = this.refs.mobile.value;
         var n_pwd = this.refs.npwd.value;
         var vcode = this.refs.vcode.value;
 
-        if( n_pwd !="" && vcode!="" ){
+        if( Validator.isNumeric( mobile ) && Validator.isLength( mobile, {min:10,max:11}) ){
+            this.state.vcodeActive = 'active';
+        } else {
+            this.state.vcodeActive = '';
+        }
+
+        if( mobile !="" && n_pwd !="" && vcode!="" ){
             this.state.btnActive = 'active';
         } else {
             this.state.btnActive = '';
@@ -137,15 +144,17 @@ class App extends Base {
 
             this.showLoading();
 
+            let mobile = this.refs.mobile.value;
             let vcode = this.refs.vcode.value;
             let pwd = MD5( this.refs.npwd.value);
 
             util.request({
-                url: Services.chgpasswd,
+                url: Services.forgetpasswd,
                 type: "get",
                 data: {
-                    vcode: vcode,
-                    passwd: pwd
+                    mobile: mobile,
+                    passwd: pwd,
+                    vcode: vcode
                 },
                 success: function(data){
                     that.closeLoading();
@@ -180,6 +189,10 @@ class App extends Base {
                 <Head title=""></Head>
 
                 <form className="form no-icon mt5">
+
+                    <label>
+                        <input ref="mobile" type="text" id="mobile" placeholder="Mobile" onKeyUp={this.onkeyup} required/>
+                    </label>
 
                     <label>
                         <input ref="npwd" type="password" id="npwd" placeholder="New Password" onKeyUp={this.onkeyup} required/>

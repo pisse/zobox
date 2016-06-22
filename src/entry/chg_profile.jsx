@@ -200,7 +200,7 @@ class App extends Base {
                     </form>
                 </Spin>
 
-                <div className="sign_btn">
+                <div className="sign_btn mt5">
                         <Button type={btnCls} onClick={this.handleClick}>Confirm</Button>
                 </div>
 

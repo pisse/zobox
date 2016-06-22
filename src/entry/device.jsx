@@ -1,13 +1,10 @@
 import util from '../common/lib';
 import Base from './_base';
-import React,{ Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Row,Col,Switch } from 'antd';
+import { Checkbox,Button,Switch } from 'antd';
 import Head from '../component/Head'
 import Heading from '../component/Heading';
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
-import QueueAnim from 'rc-queue-anim'
 import $ from "../bower_components/jquery/dist/jquery";
 
 import Config from '../common/config';
@@ -63,6 +60,7 @@ class App extends Base {
 
         let m_users_href = './users.html?imei=' + imei + "&d_t=7";
 
+        let map_href =  './map.html?imei=' + imei;
 
         let name_url = './chg_device.html?d_t=1' + '&imei=' + imei;
         let sim_phone_url = './chg_device.html?d_t=2' + '&imei=' + imei;
@@ -75,7 +73,7 @@ class App extends Base {
             <div className="device">
                 <Head className="mb5" title={this.state.devieceName}></Head>
 
-                <Heading title="Map" type="single" shape="forward" icon="right" href="./map.html" ></Heading>
+                <Heading title="Map" type="single" shape="forward" icon="right" href={map_href}></Heading>
                 <Heading title="Alarm" type="single" shape="switch" ></Heading>
                 <Heading title="GPS" type="single" shape="switch" ></Heading>
 

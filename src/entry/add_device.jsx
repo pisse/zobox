@@ -1,11 +1,9 @@
 import util from '../common/lib';
 import Base from './_base';
-import React,{ Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button, Spin } from 'antd';
+import { Checkbox,Button, Spin, message } from 'antd';
 import Head from '../component/Head'
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail';
 import classNames from 'classnames';
 import Config from '../common/config';
 
@@ -86,7 +84,7 @@ class App extends Base {
 
         return (
             <div className="register">
-                <Head title="Add Device"></Head>
+                <Head title=""></Head>
 
             <Spin spinning={this.state.loading}>
                 <form className="form no-icon mt5">
@@ -115,7 +113,7 @@ class App extends Base {
                 </form>
             </Spin>
 
-                <div className="sign_btn">
+                <div className="sign_btn mt5">
                         <Button type={btnCls} onClick={this.addDevice}>Confirm</Button>
                 </div>
 

@@ -34,6 +34,7 @@
     "gulp-rev-collector": "^1.0.3",
     "gulp-run-sequence": "^0.3.2",
     "gulp-util": "^3.0.7",
+    "imports-loader": "^0.6.5",
     "node-sass": "^3.7.0",
     "pre-commit": "1.x",
     "pubsub-js": "^1.5.3",

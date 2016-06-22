@@ -2,14 +2,15 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Spin,Modal, Input, message } from 'antd';
+import { Checkbox,Button,Spin,Modal, Input, message, Icon } from 'antd';
 import Head from '../component/Head'
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 
 import $ from "../bower_components/jquery/dist/jquery";
 import Config from '../common/config';
 import Validator from "../bower_components/validator-js/validator.min";
+
+import "../bower_components/zeptojs/src/event"
+import "../bower_components/zeptojs/src/touch";
 
 var Services = Config.service;
 
@@ -32,7 +33,54 @@ class App extends Base {
 
     componentDidMount(){
 
+        var that = this;
         this.getList();
+
+        Zepto(document).on("swipeLeft", "label", function(e){
+            $(this).addClass('translation');
+        });
+
+        Zepto(document).on("swipeRight", "label", function(e){
+            $(this).removeClass('translation');
+        });
+
+        Zepto(document).on('click', '.delete', function(e){
+            var user = $(this).prev().val();
+
+            var mobile =  localStorage.getItem("mobile");
+            if(mobile == user){
+                message.error("No authority!");
+
+            } else {
+                that.deletedevUser( user );
+            }
+        });
+    }
+
+    deletedevUser(user){
+        var that = this;
+
+        var imei = this.state.imei;
+
+        this.showLoading();
+
+        util.request({
+            url: Services.deldeviceuser,
+            type: "get",
+            data: {
+                imei: imei,
+                user: user
+            },
+            success: function(data){
+                //that.closeLoading();
+
+                that.getList();
+            },
+            error: function(data){
+                that.closeLoading();
+                message.error(data.err_msg);
+            }
+        });
     }
 
     getList(){
@@ -123,6 +171,7 @@ class App extends Base {
             return (
                 <label key={idx}>
                     <input type="text" readOnly id="user1"  value={v} required/>
+                    <Icon className="delete" type="cross-circle-o" />
                 </label>
             )
         });

@@ -11,6 +11,7 @@ var config = {
     service: {
         login: "login",
         logout: "logout",
+        forgetpasswd: "forgetpasswd",
         register: "register",
         getvcode: "getvcode",
         devicelist: "devicelist",
@@ -21,6 +22,7 @@ var config = {
         moddevice:"moddevice",
         chgdevicepasswd:"chgdevicepasswd",
         adddeviceuser: "adddeviceuser",
+        deldeviceuser: "deldeviceuser",
         profile: "profile",
         modprofile: "modprofile",
         chgpasswd: "chgpasswd",

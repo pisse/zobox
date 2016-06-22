@@ -3,8 +3,6 @@ import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Checkbox,Button,Row } from 'antd';
 import Head from '../component/Head'
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 
 
 class App extends Component {

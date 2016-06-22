@@ -1,24 +1,30 @@
-import '../common/lib';
+import util from '../common/lib';
+import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Modal,DatePicker } from 'antd';
+import { Modal,DatePicker,Spin } from 'antd';
 import MapHead from '../component/MapHead'
-import Logo from '../component/Logo'
-import PageTail from '../component/PageTail'
 import $ from "../bower_components/jquery/dist/jquery";
+import Config from '../common/config';
 
+var Services = Config.service;
 
-class App extends Component {
+class App extends Base {
 
     constructor(){
         super();
 
+        var params = util.getUrlParams();
         this.state = {
-            visible: false
+            loading: false,
+            visible: false,
+            imei: params['imei'],
+            markers: []
         };
 
         this.onStartChange = this.onStartChange.bind(this);
         this.onEndChange = this.onEndChange.bind(this);
+
         this.initLinstenner();
     }
 
@@ -36,6 +42,51 @@ class App extends Component {
     }
 
     handleOk(){
+        var start = this.state.startValue,
+            end = this.state.endValue,
+            imei = this.state.imei;
+
+        var that = this;
+
+        $.each( that.state.markers,function(i,marker){
+            marker.setMap(null);
+        });
+        that.state.markers = []
+
+        util.request({
+            url: Services.ticklist,
+            type: "get",
+            data: {
+                imei: imei,
+                start:start,
+                end:end
+            },
+            success: function(data){
+                if(data.ticklist){
+                    $.each(data.ticklist, function(i,v){
+                        var pos = {
+                            lat: v['latitude'],
+                            lng: v['longitude']
+                        };
+                        var marker = new google.maps.Marker({
+                            position: pos,
+                            label: v['time'],
+                            map: map
+                        });
+
+                        that.state.markers.push(marker);
+
+                    });
+                }
+            },
+            error: function(data){
+
+                message.error(data.err_msg);
+            }
+        });
+
+        this.state.visible = false;
+        this.forceUpdate();
 
     }
 
@@ -49,9 +100,11 @@ class App extends Component {
     }
 
     componentDidMount(){
+        var that = this;
+
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8,
+            center: {lat: 40.43, lng: -74.00},
+            zoom: 10,
 
             streetViewControlOptions: {
                 position: google.maps.ControlPosition.LEFT_CENTER
@@ -62,24 +115,43 @@ class App extends Component {
             mapTypeControlOptions: {
                 position: google.maps.ControlPosition.LEFT_BOTTOM
             }
-
-
         });
-        /*var map = new BMap.Map("map");    // 创建Map实例
-        map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-        //map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
-        //map.setZoom(11);
-        map.setCurrentCity("上海市");          // 设置地图显示的城市 此项是必须设置的
-        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-        map.addControl(new BMap.NavigationControl({
-            anchor:BMAP_ANCHOR_BOTTOM_LEFT
-        }));
-        map.addControl(new BMap.ScaleControl({}));
-        map.addControl(new BMap.OverviewMapControl());
-        map.addControl(new BMap.MapTypeControl());
-        map.addControl(new BMap.GeolocationControl());*/
+
+        var imei = this.state.imei;
+        util.request({
+            url: Services.ticklist,
+            type: "get",
+            data: {
+                imei: imei,
+                start:"",
+                end:""
+            },
+            success: function(data){
+                if(data.ticklist){
+                    $.each(data.ticklist, function(i,v){
+                        var pos = {
+                            lat: v['latitude'],
+                            lng: v['longitude']
+                        };
+                        var marker = new google.maps.Marker({
+                            position: pos,
+                            label: v['time'],
+                            map: map
+                        });
+
+                        that.state.markers.push(marker);
+
+                    });
+                }
+            },
+            error: function(data){
+
+                message.error(data.err_msg);
+            }
+        });
 
         $("#time_range").show();
+
     }
 
     render(){

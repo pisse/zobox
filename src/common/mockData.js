@@ -11,6 +11,9 @@ var data = {
     register: Mock.mock({
         retcode: 0,retmsg: "sucess"
     }),
+    forgetpasswd: Mock.mock({
+        retcode: 0,retmsg: "sucess"
+    }),
     getvcode: "getvcode",
     devicelist: Mock.mock({
         retcode:0, retmsg: "success", my_device_num:3 ,'my_device|1-5': [
@@ -55,8 +58,11 @@ var data = {
     ticklist:  Mock.mock({
         retcode: 0,retmsg: "sucess", ticklist_num: 10,
         'ticklist|10': [
-            {latitude: 11, longitude: 11, altitude: 11, speed: 11, direction: "", direction: ""}
+            {'latitude|1': [35,37,38,39], 'longitude|1': [-74.3,-74.7,-75.1,-74.5], altitude: 11, speed: 11, direction: "", 'time|1': ['1','2','3','4']}
         ]
+    }),
+    deldeviceuser:  Mock.mock({
+        retcode: 0, retmsg: "sucess"
     })
 
 };

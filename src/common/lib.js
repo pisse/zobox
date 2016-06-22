@@ -2,7 +2,7 @@ import 'antd/dist/antd.less';
 
 import $ from "../bower_components/jquery/dist/jquery"
 import Config from './config';
-//import Data from './mockData';
+import Data from './mockData';
 
 var util = {
 
@@ -10,11 +10,11 @@ var util = {
 
         if(Config.useMock){
 
-            /*if ( opt.success ) {
+            if ( opt.success ) {
                 setTimeout(function(){
                     opt.success(Data[opt.url]);
                 }, 100);
-            }*/
+            }
 
         } else {
 
@@ -32,6 +32,7 @@ var util = {
                 opt.data.skey = skey;
             }
 
+            //console.log(opt);
 
             $.getJSON({
                 type: opt.type ? opt.type : 'post',
