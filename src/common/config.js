@@ -1,5 +1,5 @@
 
-var isDev = false;
+var isDev = true;
 
 var config = {
 
@@ -18,6 +18,7 @@ var config = {
         deviceinfo: "deviceinfo",
         deviceuser: "deviceuser",
         adddevice: "adddevice",
+        deldevice: "deldevice",
 
         moddevice:"moddevice",
         chgdevicepasswd:"chgdevicepasswd",

@@ -2,7 +2,7 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,Row,Spin } from 'antd';
+import { Checkbox,Button,Row,Spin, message } from 'antd';
 import Head from '../component/Head'
 import Logo from '../component/Logo'
 import PageTail from '../component/PageTail'
@@ -123,7 +123,9 @@ class App extends Base {
                         window.history.go(-1);
                 },
                 error: function(data){
+                    that.closeLoading();
 
+                    message.error(data.err_msg);
                 }
             });
         }

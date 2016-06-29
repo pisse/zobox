@@ -63,7 +63,10 @@ var data = {
     }),
     deldeviceuser:  Mock.mock({
         retcode: 0, retmsg: "sucess"
-    })
+    }),
+    deldevice: Mock.mock({
+        retcode: 0, retmsg: "sucess"
+    }),
 
 };
 

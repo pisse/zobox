@@ -180,7 +180,7 @@ class App extends Base {
             "active": this.state.btnActive,
         });
 
-        let code_title = this.state.waiting ? this.state.count: "get code";
+        let code_title = this.state.waiting ? this.state.count: "Get Code";
 
         return (
 

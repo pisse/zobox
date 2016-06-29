@@ -2,7 +2,7 @@ import util from '../common/lib';
 import Base from './_base';
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button,message, Row,Col,Switch,Spin,Icon } from 'antd';
+import { Checkbox,Button,message, Row,Col,Switch,Spin,Icon,Modal } from 'antd';
 import HeadMain from '../component/HeadMain';
 import SIcon from '../component/SIcon';
 import $ from "../bower_components/jquery/dist/jquery";
@@ -34,6 +34,7 @@ class App extends Base {
     }
 
     componentDidMount(){
+        var that = this;
         this.getList();
 
         Zepto(document).on("swipeLeft", ".list-item", function(e){
@@ -48,6 +49,42 @@ class App extends Base {
             $(this).removeClass('translation');
         });
 
+        Zepto(document).on('click', '.delete', function(e){
+            const confirm = Modal.confirm;
+            var imei = $(this).attr('data-imei');
+
+            that.deleteDevice(imei);
+            //console.log(imei);
+            /*confirm({
+                title: 'Are?',
+                content: 'Delete device!',
+                onOk() {
+                    that.deleteDevice(imei);
+                },
+                onCancel() {}
+            });*/
+        });
+
+    }
+
+    deleteDevice(imei){
+        var that = this;
+
+        //var imei = this.state.imei;
+
+        util.request({
+            url: Services.deldevice,
+            type: "get",
+            data: {
+                imei: imei
+            },
+            success: function(data){
+                that.getList();
+            },
+            error: function(data){
+                message.error(data.err_msg);
+            }
+        });
     }
 
     getList(){
@@ -140,7 +177,7 @@ class App extends Base {
                     </Row>
 
 
-                    <Icon className="delete" type="cross-circle-o" />
+                    <Icon className="delete" data-imei={v['imei']} type="cross-circle-o" />
                 </li>
             )
         });

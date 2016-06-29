@@ -102,7 +102,7 @@ class App extends Base {
         return (
 
             <div className="sign_on ">
-                <Head title="" bcls="none"></Head>
+                <Head title="Login" bcls="none"></Head>
                 <Logo></Logo>
                 <Spin spinning={this.state.loading}  >
                     <form className="form">

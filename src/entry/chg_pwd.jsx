@@ -173,7 +173,7 @@ class App extends Base {
             "active": this.state.vcodeActive,
         });
 
-        let code_title = this.state.waiting ? this.state.count: "get code";
+        let code_title = this.state.waiting ? this.state.count: "Get Code";
 
         return (
             <div className="register">
