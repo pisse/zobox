@@ -4,7 +4,7 @@ var isDev = true;
 var config = {
 
     isDev: isDev,
-    useMock: false,
+    useMock: true,
 
     devUrl: !isDev ? "http://112.124.66.29:8080/cgi-bin/" : "http://localhost:8080/cgi-bin/",
 
