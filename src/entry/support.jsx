@@ -11,6 +11,8 @@ class App extends Component {
 
     constructor(){
         super();
+
+        this.testSMS = this.testSMS.bind(this);
     }
 
     handleClick(){
@@ -18,6 +20,8 @@ class App extends Component {
     }
 
     testSMS(){
+
+        console.log("start");
         var number = "18621571903";
         var message = "message test from zobox";
 
@@ -32,7 +36,10 @@ class App extends Component {
 
         var success = function () { alert('Message sent successfully'); };
         var error = function (e) { alert('Message Failed:' + e); };
+        console.log("before sent" + number +'| '+ message);
+        console.log(sms);
         sms.send(number, message, options, success, error);
+        console.log("end");
     }
 
     render(){
