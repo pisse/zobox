@@ -22,6 +22,9 @@ class App extends Component {
             alert(2)
         }*/
 
+    }
+
+    componentDidMount(){
         this.initLinstenner();
     }
 
@@ -60,7 +63,7 @@ class App extends Component {
        alert(typeof sms);
         alert(typeof device)
        alert(device.cordova);
-        //sms.send(number, message, options, success, error);
+        sms.send(number, message, options, success, error);
        alert("end");
     }
 

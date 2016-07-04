@@ -65,6 +65,15 @@ class App extends Base {
             });*/
         });
 
+        this.bindEvents();
+
+    }
+    bindEvents(){
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    }
+    onDeviceReady(){
+        alert(typeof device);
+        alert(typeof sms);
     }
 
     deleteDevice(imei){
