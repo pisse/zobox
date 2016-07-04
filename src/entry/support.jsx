@@ -13,6 +13,14 @@ class App extends Component {
         super();
 
         this.testSMS = this.testSMS.bind(this);
+
+       /* document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            alert(1)
+            alert(typeof  device);
+            alert(2)
+        }*/
     }
 
     handleClick(){
@@ -22,7 +30,7 @@ class App extends Component {
     testSMS(){
 
        alert("start");
-        var number = "18621571903";
+        var number = "17721070152";
         var message = "message test from zobox";
 
         //CONFIGURATION
@@ -38,10 +46,9 @@ class App extends Component {
         var error = function (e) { alert('Message Failed:' + e); };
        alert("before sent" + number +'| '+ message);
        alert(typeof sms);
-       alert(typeof Sms);
-        alert(typeof device)
+        //alert(typeof device)
        alert(device.cordova);
-        //sms.send(number, message, options, success, error);
+        sms.send(number, message, options, success, error);
        alert("end");
     }
 

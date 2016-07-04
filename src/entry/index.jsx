@@ -33,6 +33,8 @@ class App extends Base {
 
         this.focus = this.focus.bind(this);
         this.blur = this.blur.bind(this);
+
+
     }
 
     login(){

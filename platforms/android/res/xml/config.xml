@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.example.zobox" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="Sms">
+        <param name="android-package" value="com.cordova.plugins.sms.Sms" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -10,21 +16,21 @@
         <param name="onload" value="true" />
     </feature>
     <allow-intent href="market:*" />
-    <icon height="180" src="www/res/img/logo1.png" width="180" />
-    <icon height="60" src="www/res/img/logo1.png" width="60" />
-    <icon height="120" src="www/res/img/logo1.png" width="120" />
-    <icon height="76" src="www/res/img/logo1.png" width="76" />
-    <icon height="152" src="www/res/img/logo1.png" width="152" />
-    <icon height="40" src="www/res/img/logo1.png" width="40" />
-    <icon height="80" src="www/res/img/logo1.png" width="80" />
-    <icon height="57" src="www/res/img/logo1.png" width="57" />
-    <icon height="114" src="www/res/img/logo1.png" width="114" />
-    <icon height="72" src="www/res/img/logo1.png" width="72" />
-    <icon height="144" src="www/res/img/logo1.png" width="144" />
-    <icon height="29" src="www/res/img/logo1.png" width="29" />
-    <icon height="58" src="www/res/img/logo1.png" width="58" />
-    <icon height="50" src="www/res/img/logo1.png" width="50" />
-    <icon height="100" src="www/res/img/logo1.png" width="100" />
+    <icon height="180" src="www/res/img/logo2.png" width="180" />
+    <icon height="60" src="www/res/img/logo2.png" width="60" />
+    <icon height="120" src="www/res/img/logo2.png" width="120" />
+    <icon height="76" src="www/res/img/logo2.png" width="76" />
+    <icon height="152" src="www/res/img/logo2.png" width="152" />
+    <icon height="40" src="www/res/img/logo2.png" width="40" />
+    <icon height="80" src="www/res/img/logo2.png" width="80" />
+    <icon height="57" src="www/res/img/logo2.png" width="57" />
+    <icon height="114" src="www/res/img/logo2.png" width="114" />
+    <icon height="72" src="www/res/img/logo2.png" width="72" />
+    <icon height="144" src="www/res/img/logo2.png" width="144" />
+    <icon height="29" src="www/res/img/logo2.png" width="29" />
+    <icon height="58" src="www/res/img/logo2.png" width="58" />
+    <icon height="50" src="www/res/img/logo2.png" width="50" />
+    <icon height="100" src="www/res/img/logo2.png" width="100" />
     <name>ZoBox</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

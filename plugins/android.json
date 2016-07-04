@@ -7,6 +7,12 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.cordova.plugins.sms": {
+            "PACKAGE_NAME": "com.example.zobox"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.example.zobox"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.example.zobox"
         },
