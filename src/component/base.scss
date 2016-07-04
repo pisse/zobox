@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+@font-face {
+  font-family: "square";
+  src: url(//:) format("no404"), url("../res/font/square-normal.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import "bourbon";
 
 $height40 : 40px;
@@ -17,9 +24,9 @@ body{background-color: #f3f3f3;}
   background-color: #fff;
   border-bottom: 1px solid #e3e3e3;
 
-  h2{text-align: center;height: 36px;line-height: 36px;font-family: Roboto;  font-size: 26px;}
+  h2{text-align: center;height: 36px;line-height: 36px;font-family: square,Roboto;  font-size: 26px;}
 
-  .setting,.add-device{position: relative;width: 50%; height: 100%; float:left;display: inline-block;color: #333333;font-family: "Hiragino Sans GB"; font-weight: normal;font-size: 22px;}
+  .setting,.add-device{position: relative;width: 50%; height: 100%; float:left;display: inline-block;color: #333333;font-family: square,"Hiragino Sans GB"; font-weight: normal;font-size: 22px;}
   .setting{text-align: left;padding-left:32px;}
   .add-device{text-align: right; padding-right: 37px;}
 
@@ -166,7 +173,7 @@ body{background-color: #f3f3f3;}
 
   .ant-cascader-picker-label{
     left:0;
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+    font-family: square,"Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
     font-size: 16px;
   }
   .coutry-wrap{
@@ -191,7 +198,7 @@ body{background-color: #f3f3f3;}
     background: transparent;
     font-size: 16px;
    /* font-family: "Hiragino Sans GB";*/
-   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+   font-family: square,"Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
     &:focus{
       outline: none;
     }
@@ -234,7 +241,7 @@ body{background-color: #f3f3f3;}
     left: 10%;
     color: #fff;
     background-color: #333333;
-    font-family: "Hiragino Sans GB";
+    font-family: square,"Hiragino Sans GB";
   }
   .ant-alert-description{
     line-height: 16px;

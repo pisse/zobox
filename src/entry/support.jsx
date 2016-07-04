@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     testSMS(){
-        var number = "18600557240";
+        var number = "18621571903";
         var message = "message test from zobox";
 
         //CONFIGURATION
