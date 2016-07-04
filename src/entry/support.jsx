@@ -21,16 +21,28 @@ class App extends Component {
             alert(typeof  device);
             alert(2)
         }*/
+
+        this.initLinstenner();
+    }
+
+    initLinstenner(){
+        document.addEventListener('deviceready', this.onDeviceReady, false);
     }
 
     handleClick(){
         window.location.href = "./main.html";
     }
 
+    onDeviceReady(){
+        alert(typeof sms);
+        alert(typeof device)
+    }
+
+
     testSMS(){
 
        alert("start");
-        var number = "17721070152";
+        var number = "18621571903";
         var message = "message test from zobox";
 
         //CONFIGURATION
@@ -46,9 +58,9 @@ class App extends Component {
         var error = function (e) { alert('Message Failed:' + e); };
        alert("before sent" + number +'| '+ message);
        alert(typeof sms);
-        //alert(typeof device)
+        alert(typeof device)
        alert(device.cordova);
-        sms.send(number, message, options, success, error);
+        //sms.send(number, message, options, success, error);
        alert("end");
     }
 
