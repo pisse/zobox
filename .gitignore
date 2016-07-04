@@ -20,3 +20,5 @@ node_modules
 src/bower_components
 dist
 test.*
+plugins
+platforms
