@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.example.zobox"
+        },
+        "org.apache.cordova.splashscreen": {
+            "PACKAGE_NAME": "com.example.zobox"
         }
     },
     "dependent_plugins": {}

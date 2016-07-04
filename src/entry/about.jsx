@@ -24,9 +24,6 @@ class App extends Component {
                 <Head title="About Us"></Head>
                 <Logo type="black" version="V1.0.1"></Logo>
 
-                <Heading className="mt5" title="About Us" type="multiple" shape="forward"  href="./profile.html"></Heading>
-                <Heading title="General" type="About Us" shape="forward" ></Heading>
-
             </div>
         )
     }

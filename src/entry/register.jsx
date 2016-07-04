@@ -197,7 +197,7 @@ class App extends Base {
 
                         <label className="country" htmlFor="country">
                             <span className="coutry-wrap">
-                                 <Cascader options={this.state.options} onChange={this.onChange} defaultValue={["1"]} placeholder="Country"></Cascader>
+                                 <Cascader options={this.state.options} allowClear={false} onChange={this.onChange} defaultValue={["1"]} placeholder="Country"></Cascader>
                             </span>
                         </label>
 
@@ -210,7 +210,7 @@ class App extends Base {
                         </label>
 
                         <label className="vcode" htmlFor="vcode">
-                            <input type="text" ref="vcode" id="vcode" placeholder="Verification Code" onKeyUp={this.codeKeyup} required/>
+                            <input type="text" ref="vcode" id="vcode" placeholder="SMS Verification Code" onKeyUp={this.codeKeyup} required/>
                             <i className={vcodeCls} onClick={this.getVcode}>{code_title}</i>
                         </label>
 

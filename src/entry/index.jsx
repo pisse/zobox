@@ -12,6 +12,8 @@ import Validator from "../bower_components/validator-js/validator.min";
 import Config from '../common/config';
 var Services = Config.service;
 
+import $ from "../bower_components/jquery/dist/jquery";
+
 class App extends Base {
 
     constructor(){
@@ -28,6 +30,9 @@ class App extends Base {
         this.login = this.login.bind(this);
         //this.register = this.register.bind(this);
         this.keyup = this.keyup.bind(this);
+
+        this.focus = this.focus.bind(this);
+        this.blur = this.blur.bind(this);
     }
 
     login(){
@@ -78,6 +83,13 @@ class App extends Base {
         this.forceUpdate();
     }
 
+    focus(){
+        $(".tail").hide();
+    }
+    blur(){
+        $(".tail").show();
+    }
+
 
     render(){
 
@@ -107,11 +119,11 @@ class App extends Base {
                 <Spin spinning={this.state.loading}  >
                     <form className="form">
                         <label className="mobile" htmlFor="mobile">
-                            <input type="text" ref="mobile" id="email" defaultValue={mobile} placeholder="Mobile" onKeyUp={this.keyup} required/>
+                            <input type="text" ref="mobile" id="email" defaultValue={mobile} placeholder="Mobile" onKeyUp={this.keyup} onFocus={this.focus} onBlur={this.blur} required/>
                         </label>
 
                         <label className="pwd" htmlFor="pwd">
-                            <input type="password"  ref="pwd" id="pwd" placeholder="Password" onKeyUp={this.keyup} required/>
+                            <input type="password"  ref="pwd" id="pwd" placeholder="Password" onKeyUp={this.keyup} onFocus={this.focus} onBlur={this.blur} required/>
                         </label>
                     </form>
                 </Spin>
@@ -128,7 +140,7 @@ class App extends Base {
 
                 </div>
 
-                <PageTail/>
+                <PageTail />
             </div>
 
         )

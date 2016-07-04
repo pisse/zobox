@@ -173,7 +173,7 @@ class App extends Base {
                         <Col span={5}><SIcon type="gps"></SIcon></Col>
                         <Col span={4}><SIcon type="gprs" status="off"></SIcon></Col>
                         <Col span={5}><Switch defaultChecked={false} /></Col>
-                        <Col span={5}><a href={alarm_href}>{v['alarm_num']}</a></Col>
+                        <Col className="alarm" span={5}><a href={alarm_href}></a></Col>
                     </Row>
 
 
@@ -190,7 +190,7 @@ class App extends Base {
                     <Row type="flex" justify="middle">
                         <Col span={5}>Device</Col>
                         <Col span={5}>GSM</Col>
-                        <Col span={4}>GPRS</Col>
+                        <Col span={4}>Status</Col>
                         <Col span={5}>GPS</Col>
                         <Col span={5}>Alarm</Col>
                     </Row>

@@ -46,7 +46,8 @@ class App extends Base {
                 <Head title=""></Head>
 
                 <Heading className="mt5" title="Profile" type="multiple" shape="forward"  href="./profile.html"></Heading>
-                <Heading title="General" type="multiple" shape="forward" href="./about.html"></Heading>
+                <Heading title="Help" type="multiple" shape="forward" href="./help.html"></Heading>
+                <Heading title="Support" type="multiple" shape="forward" href="./support.html"></Heading>
                 <Heading className="mb5" title="About Us" type="multiple" shape="forward" href="./about.html"></Heading>
 
                 <Heading className="none" title="Sign Out" type="single" shape="forward" icon="right" click={this.signOut} ></Heading>

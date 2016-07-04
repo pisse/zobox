@@ -67,9 +67,9 @@ class App extends Component {
                 <Heading title="Country" val={country} type="multiple" ></Heading>
                 <Heading title="Mobile" val={mobile} type="multiple" ></Heading>
 
-                <Heading title="State" val={state} className="mt5" type="multiple" shape="forward" href="./chg_profile.html?p_t=4"></Heading>
+                <Heading title="Street" val={street} className="mt5" type="multiple" shape="forward" href="./chg_profile.html?p_t=6"></Heading>
                 <Heading title="City" val={city} type="multiple" shape="forward" href="./chg_profile.html?p_t=5"></Heading>
-                <Heading title="Street" val={street} className="" type="multiple" shape="forward" href="./chg_profile.html?p_t=6"></Heading>
+                <Heading title="State" val={state} className="" type="multiple" shape="forward" href="./chg_profile.html?p_t=4"></Heading>
                 <Heading title="Post Code" val={zipcode} type="multiple" shape="forward" href="./chg_profile.html?p_t=7"></Heading>
 
 
