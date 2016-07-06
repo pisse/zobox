@@ -24,28 +24,14 @@ class App extends Component {
 
     }
 
-    componentDidMount(){
-        this.initLinstenner();
-    }
-
-    initLinstenner(){
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    }
-
     handleClick(){
         window.location.href = "./main.html";
     }
 
-    onDeviceReady(){
-        alert(typeof sms);
-        alert(typeof device)
-    }
-
-
     testSMS(){
 
-       alert("start");
-        var number = "18621571903";
+       //alert("start");
+        var number = "18600557240";
         var message = "message test from zobox";
 
         //CONFIGURATION
@@ -59,12 +45,8 @@ class App extends Component {
 
         var success = function () { alert('Message sent successfully'); };
         var error = function (e) { alert('Message Failed:' + e); };
-       alert("before sent" + number +'| '+ message);
-       alert(typeof sms);
-        alert(typeof device)
-       alert(device.cordova);
+        alert("before sent" + number +'| '+ message + (typeof sms));
         sms.send(number, message, options, success, error);
-       alert("end");
     }
 
     render(){

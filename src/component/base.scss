@@ -15,8 +15,12 @@ $height45: 45px;
 .mt5{margin-top: 1em;}
 .mb5{margin-bottom: 1em;}
 .mb10{margin-bottom: 2em;}
+.pl5{padding-left: 16px;}
+.pl8{padding-left: 8px;}
+.pr5{padding-right: 16px;}
+.pr8{padding-right: 8px;}
 
-body{background-color: #f3f3f3;}
+body{background-color: #f3f3f3;font-family: square,"Hiragino Sans GB";}
 .app{ max-width: 640px;margin: 0 auto; }
 
 .head{
@@ -119,7 +123,7 @@ body{background-color: #f3f3f3;}
       border-top: 1px solid #e3e3e3;
     }
   }
-  label::before{
+  label[for]::before{
     content: '';
     width: 35px;
     height: $height45;
@@ -168,6 +172,14 @@ body{background-color: #f3f3f3;}
 
     &.active{
       opacity: 1;
+    }
+  }
+
+  select{
+    border: 0;
+    width: 100%;
+    &:focus,  &:active{
+      border: 0;
     }
   }
 
@@ -274,6 +286,13 @@ body{background-color: #f3f3f3;}
 .ant-btn{font-size: 16px;}
 .ant-cascader-menu-item{padding-left: 5px;}
 .ant-cascader-menu{height: auto;}
+.ant-select-selection,.ant-select-selection:focus, .ant-select-selection:active, .ant-select-open .ant-select-selection,
+.ant-select-open .ant-select-selection:active,.ant-select-open .ant-select-selection:focus{
+  border: 0;
+  box-shadow: none;
+}
+.ant-select{font-size: 16px;}
+.ant-select-search__field{padding-left: 0 !important;}
 .main{
   .thead{background-color: #fff;margin-bottom: 10px;}
   .device-list{
@@ -363,9 +382,18 @@ body{background-color: #f3f3f3;}
 }
 
 .users{
-  .form{
-    label{
+  .user-list{
+    background-color: #fff;
+    font-size: 16px;
+
+    .list-item{
       overflow: hidden;
+      height: $height45;
+      line-height: $height45;;
+      vertical-align: middle;
+      border-bottom: 1px solid #e3e3e3;
+      padding-left: 1em;
+      position: relative;
 
       .delete{
         position: absolute;
@@ -384,7 +412,13 @@ body{background-color: #f3f3f3;}
         color: #fff;
       }
 
+      p{
+        transition: transform .5s,height 0s ease .5s;
+      }
       &.translation{
+        p{
+          @include transform(translateX(-50px));
+        }
         .delete{
           transform: translateX(5px);
           transition:transform .5s;

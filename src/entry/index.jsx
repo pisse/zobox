@@ -70,6 +70,9 @@ class App extends Base {
                     that.closeLoading();
                 }
             });
+            setTimeout(function(){
+                that.closeLoading();
+            }, 3000);
         }
     }
 
@@ -116,7 +119,7 @@ class App extends Base {
         return (
 
             <div className="sign_on ">
-                <Head title="Login" bcls="none"></Head>
+                <Head title="" bcls="none"></Head>
                 <Logo></Logo>
                 <Spin spinning={this.state.loading}  >
                     <form className="form">

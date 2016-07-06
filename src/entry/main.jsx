@@ -65,15 +65,8 @@ class App extends Base {
             });*/
         });
 
-        this.bindEvents();
+        //$("body").bind("touchmove", function(e) { e.preventDefault()});
 
-    }
-    bindEvents(){
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    }
-    onDeviceReady(){
-        alert(typeof device);
-        alert(typeof sms);
     }
 
     deleteDevice(imei){
@@ -122,51 +115,6 @@ class App extends Base {
         });
     }
 
-/*    addDevice(){
-        this.state.visible = true;
-        this.forceUpdate();
-    }
-
-    handleCancel(){
-        this.state.visible = false;
-
-        this.forceUpdate();
-    }
-
-    handleOk(){
-        var that = this;
-        var imei = this.state.imei;
-
-        var device_name = $("#device").val();
-
-        //console.log(user_name);
-
-        this.state.visible = false;
-        this.showLoading();
-
-        $("#device").val("");
-
-        util.request({
-            url: Services.adddeviceuser,
-            type: "get",
-            data: {
-                imei: imei,
-                mobile: "xx",
-                skey: "xx"
-            },
-            success: function(data){
-                //that.closeLoading();
-
-                that.getList();
-
-                that.forceUpdate();
-            },
-            error: function(data){
-                message.error(data.err_msg);
-            }
-        });
-    }*/
-
     render(){
 
         const { deviceList,otherDeviceList,myDeviceNum,otherDeviceNum, ...others } = this.state;
@@ -193,7 +141,7 @@ class App extends Base {
 
         return (
             <div className="main">
-                <HeadMain onAdd={this.addDevice}></HeadMain>
+                <HeadMain></HeadMain>
 
                 <div className="thead">
                     <Row type="flex" justify="middle">

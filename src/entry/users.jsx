@@ -36,20 +36,21 @@ class App extends Base {
         var that = this;
         this.getList();
 
-        Zepto(document).on("swipeLeft", "label", function(e){
+        Zepto(document).on("swipeLeft", ".list-item", function(e){
             $(this).addClass('translation');
         });
 
-        Zepto(document).on("swipeRight", "label", function(e){
+        Zepto(document).on("swipeRight", ".list-item", function(e){
             $(this).removeClass('translation');
         });
 
-        Zepto(document).on("click", "label", function(e){
+        Zepto(document).on("click", ".list-item", function(e){
             $(this).removeClass('translation');
         });
 
         Zepto(document).on('click', '.delete', function(e){
-            var user = $(this).prev().val();
+            //var user = $(this).prev().val();
+            var user = $(this).attr('data-imei');
 
             var mobile =  localStorage.getItem("mobile");
             if(mobile == user){
@@ -173,10 +174,10 @@ class App extends Base {
         var myList = userlist.map(function(v,idx){
 
             return (
-                <label key={idx}>
-                    <input type="text" readOnly id="user1"  value={v} required/>
-                    <Icon className="delete" type="cross-circle-o" />
-                </label>
+                <li className="list-item" key={idx}>
+                    <p type="text" >{v}</p>
+                    <Icon className="delete" data-imei={v} type="cross-circle-o" />
+                </li>
             )
         });
 
@@ -186,9 +187,9 @@ class App extends Base {
                 <Head className="add" onAdd={this.showAdd} title="Users"></Head>
 
                 <Spin spinning={this.state.loading}>
-                    <form className="form no-icon mt5">
+                    <ul className="user-list no-icon mt5">
                         {myList}
-                    </form>
+                    </ul>
                 </Spin>
 
                 <Modal  className="map" title="" visible={this.state.visible} cancelText="Cancel"  okText="OK"  title="对话框标题"

@@ -2,14 +2,17 @@ import util from '../common/lib';
 import Base from './_base';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Checkbox,Button, Spin, message } from 'antd';
+import { Checkbox,Button, Spin, message, Cascader,Select } from 'antd';
 import Head from '../component/Head'
 import classNames from 'classnames';
 import Config from '../common/config';
 
+import countries  from '../component/country';
+
 import Validator from "../bower_components/validator-js/validator.min";
 var Services = Config.service;
 
+const Option = Select.Option;
 
 class App extends Base {
 
@@ -22,6 +25,21 @@ class App extends Base {
             simimeiValue: "",
             pinValue:"",
 
+           /* options: [{
+                value: '1',
+                label: 'American'
+            },{
+                value: '2',
+                label: 'Britain'
+            },{
+                value: '3',
+                label: 'China'
+            }],*/
+
+            isIphone: navigator.platform == "iPhone" ,
+            dftCountryValue: "1",
+            dftCountryName: "United States",
+
             btnActive: ""
         };
 
@@ -30,19 +48,28 @@ class App extends Base {
         this.simimeiChange = this.simimeiChange.bind(this);
         this.pinChange = this.pinChange.bind(this);
         this.imeiChange = this.imeiChange.bind(this);
+        this.onCountryChange = this.onCountryChange.bind(this);
+        this.onIosCountryChange = this.onIosCountryChange.bind(this);
     }
 
+    onCountryChange(value){
+        this.state.country = value.split("|")[1];
+        console.log(this.state.country)
+    }
+    onIosCountryChange(event){
+        this.state.country = $("select").val();
+    }
 
     validate(){
         let imei = this.state.imeiValue.replace(/-/g, "");
         let name = this.refs.name.value;
-        let sim_imei = this.state.simimeiValue.replace(/-/g, "");
+       // let sim_imei = this.state.simimeiValue.replace(/-/g, "");
         let pwd = this.state.pinValue;
         let sim_phone = this.refs.sim_phone.value;
 
         //console.log([imei,name,sim_imei,pwd,sim_phone].join("--"))
 
-        if(imei!= "" && name !="" && sim_imei != "" && sim_phone!="" && pwd!="" && Validator.isLength(imei, 15) && Validator.isLength(sim_imei, 20)  )  {
+        if(imei!= "" && name !=""  && sim_phone!="" && Validator.isLength(imei, 15)  )  {
             this.state.btnActive = "active";
         }else {
             this.state.btnActive = "";
@@ -83,11 +110,12 @@ class App extends Base {
     addDevice(){
         var that = this;
         if(this.state.btnActive == "active"){
-            let imei = this.state.imeiValue;
+            let imei = this.state.imeiValue.replace(/-/g, "");
             let pwd = this.state.pinValue || "1234";
             let name = this.refs.name.value;
-            let sim_imei = this.state.simimeiValue;
+            //let sim_imei = this.state.simimeiValue.replace(/-/g, "");
             let sim_phone = this.refs.sim_phone.value;
+            let sim_country = this.state.country;
 
             this.showLoading();
 
@@ -98,8 +126,9 @@ class App extends Base {
                     name: name,
                     imei: imei,
                     passwd: pwd,
-                    sim_imei: sim_imei,
-                    sim_phone: sim_phone
+                //    sim_imei: sim_imei,
+                    sim_phone: sim_phone,
+                    sim_country: sim_country
                 },
                 success: function(data){
                     that.closeLoading();
@@ -117,10 +146,47 @@ class App extends Base {
 
     render(){
 
+        var that = this;
         let btnCls =  classNames({
             "primary": true,
             "active": this.state.btnActive,
         });
+
+        /*<label>
+            <input type="text" value={this.state.simimeiValue} ref="sim_imei"  id="sim_imei" placeholder="SIM IMEI"  onKeyUp={this.validate} onChange={this.simimeiChange} required/>
+        </label>*/
+
+       /* <label className="country pl5">
+                            <span className="coutry-wrap">
+                                 <Cascader options={this.state.options} allowClear={false} onChange={this.onCountryChange} defaultValue={["1"]} placeholder="Country"></Cascader>
+                            </span>
+        </label>*/
+
+        var select;
+        var options = countries.map(function(v,i){
+            if( that.state.isIphone ){
+                return <Option key={v['name']+ "|" +v['value']} > {v['name']} </Option>;
+            } else{
+                return <option key={i}  value={v['value']}> {v['name']} </option >;
+            }
+        });
+
+
+        if( this.state.isIphone){
+            select = (
+                <Select showSearch optionFilterProp="children" defaultValue={this.state.dftCountryName} onChange={this.onCountryChange}>
+                    {options}
+                </Select>
+            )
+        } else {
+            select = (
+                <select name="country" defaultValue={this.state.dftCountryValue} onChange={this.onIosCountryChange}>
+                    {options}
+                </select >
+            )
+        }
+
+
 
         return (
             <div className="register">
@@ -140,13 +206,8 @@ class App extends Base {
                         <input type="password"  value={this.state.pinValue}  ref="pwd" onChange={this.pinChange} id="pwd" placeholder="Device PIN (length less than 6)"  onKeyUp={this.validate} required/>
                     </label>
 
-
-                    <label>
-                        <input type="text" value={this.state.simimeiValue} ref="sim_imei"  id="sim_imei" placeholder="SIM IMEI"  onKeyUp={this.validate} onChange={this.simimeiChange} required/>
-                    </label>
-
-                    <label>
-                        <input type="text"  ref="sim_country"  id="sim_country" placeholder="SIM Country" onKeyUp={this.validate} required/>
+                    <label className="pl8 pr8">
+                        {select}
                     </label>
 
                     <label>
